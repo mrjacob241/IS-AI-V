@@ -1,0 +1,40 @@
+
+lds/t_rodata-rv32_ld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	fe010113          	addi	sp,sp,-32
+   4:	00812e23          	sw	s0,28(sp)
+   8:	02010413          	addi	s0,sp,32
+   c:	05400793          	li	a5,84
+  10:	fef42623          	sw	a5,-20(s0)
+  14:	fe042423          	sw	zero,-24(s0)
+  18:	0240006f          	j	3c <_start+0x3c>
+  1c:	fec42783          	lw	a5,-20(s0)
+  20:	00178713          	addi	a4,a5,1
+  24:	fee42623          	sw	a4,-20(s0)
+  28:	0007c783          	lbu	a5,0(a5)
+  2c:	00078713          	mv	a4,a5
+  30:	fe842783          	lw	a5,-24(s0)
+  34:	00e787b3          	add	a5,a5,a4
+  38:	fef42423          	sw	a5,-24(s0)
+  3c:	fec42783          	lw	a5,-20(s0)
+  40:	0007c783          	lbu	a5,0(a5)
+  44:	fc079ce3          	bnez	a5,1c <_start+0x1c>
+  48:	fe842503          	lw	a0,-24(s0)
+  4c:	05d00893          	li	a7,93
+  50:	00000073          	ecall
+
+lds/t_rodata-rv32_ld.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 130101fe 232e8100 13040102 93074005  ....#.........@.
+ 0010 2326f4fe 232404fe 6f004002 8327c4fe  #&..#$..o.@..'..
+ 0020 13871700 2326e4fe 83c70700 13870700  ....#&..........
+ 0030 832784fe b387e700 2324f4fe 8327c4fe  .'......#$...'..
+ 0040 83c70700 e39c07fc 032584fe 9308d005  .........%......
+ 0050 73000000                             s...            
+Contents of section .rodata:
+ 0054 48656c6c 6f000000                    Hello...        

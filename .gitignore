@@ -1,0 +1,7 @@
+appdata/
+.*/
+obj_dir/
+screen.ppm
+screen.ppm.tmp
+codes/builds/
+codes/lds/*.elf

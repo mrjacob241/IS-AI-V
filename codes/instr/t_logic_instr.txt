@@ -1,0 +1,46 @@
+
+lds/t_logic-rv32_ld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	fd010113          	addi	sp,sp,-48
+   4:	02812623          	sw	s0,44(sp)
+   8:	03010413          	addi	s0,sp,48
+   c:	00f00793          	li	a5,15
+  10:	fef42623          	sw	a5,-20(s0)
+  14:	03600793          	li	a5,54
+  18:	fef42423          	sw	a5,-24(s0)
+  1c:	fec42703          	lw	a4,-20(s0)
+  20:	fe842783          	lw	a5,-24(s0)
+  24:	00f777b3          	and	a5,a4,a5
+  28:	fef42223          	sw	a5,-28(s0)
+  2c:	fec42703          	lw	a4,-20(s0)
+  30:	fe842783          	lw	a5,-24(s0)
+  34:	00f767b3          	or	a5,a4,a5
+  38:	fef42023          	sw	a5,-32(s0)
+  3c:	fec42703          	lw	a4,-20(s0)
+  40:	fe842783          	lw	a5,-24(s0)
+  44:	00f747b3          	xor	a5,a4,a5
+  48:	fcf42e23          	sw	a5,-36(s0)
+  4c:	fe442703          	lw	a4,-28(s0)
+  50:	fe042783          	lw	a5,-32(s0)
+  54:	00f707b3          	add	a5,a4,a5
+  58:	fdc42703          	lw	a4,-36(s0)
+  5c:	00f707b3          	add	a5,a4,a5
+  60:	fcf42c23          	sw	a5,-40(s0)
+  64:	fd842503          	lw	a0,-40(s0)
+  68:	05d00893          	li	a7,93
+  6c:	00000073          	ecall
+
+lds/t_logic-rv32_ld.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 130101fd 23268102 13040103 9307f000  ....#&..........
+ 0010 2326f4fe 93076003 2324f4fe 0327c4fe  #&....`.#$...'..
+ 0020 832784fe b377f700 2322f4fe 0327c4fe  .'...w..#"...'..
+ 0030 832784fe b367f700 2320f4fe 0327c4fe  .'...g..# ...'..
+ 0040 832784fe b347f700 232ef4fc 032744fe  .'...G..#....'D.
+ 0050 832704fe b307f700 0327c4fd b307f700  .'.......'......
+ 0060 232cf4fc 032584fd 9308d005 73000000  #,...%......s...

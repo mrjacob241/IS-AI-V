@@ -1,0 +1,42 @@
+;Important detail: the machine code is shown as a 32-bit word, but RISC-V ELF is little-endian. So:
+;
+;fe010113
+;
+;is stored in the binary file as bytes:
+;
+;13 01 01 fe
+
+
+add-rv32.elf:     file format elf32-littleriscv
+
+Disassembly of section .text:
+
+00010074 <_start>:
+10074: fe010113  addi sp,sp,-32      ; Allocate 32 bytes of stack space
+10078: 00812e23  sw s0,28(sp)        ; Save frame pointer (s0)
+1007c: 02010413  addi s0,sp,32       ; Establish stack frame
+
+10080: 00300793  li a5,3             ; a5 = 3
+10084: fef42623  sw a5,-20(s0)       ; a = 3
+
+10088: 00200793  li a5,2             ; a5 = 2
+1008c: fef42423  sw a5,-24(s0)       ; b = 2
+
+10090: fec42703  lw a4,-20(s0)       ; a4 = a
+10094: fe842783  lw a5,-24(s0)       ; a5 = b
+10098: 00f707b3  add a5,a4,a5        ; a5 = a + b
+
+1009c: fef42223  sw a5,-28(s0)       ; c = a + b
+100a0: fe442503  lw a0,-28(s0)       ; exit code = c
+
+100a4: 05d00893  li a7,93            ; Linux syscall number 93 (exit)
+100a8: 00000073  ecall               ; invoke kernel -> exit(c)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Equivalent C:
+
+    int a = 3;
+    int b = 2;
+    int c = a + b;
+    exit(c);

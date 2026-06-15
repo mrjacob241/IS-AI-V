@@ -1,0 +1,23 @@
+
+lds/t_lui-rv32_ld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	fe010113          	addi	sp,sp,-32
+   4:	00812e23          	sw	s0,28(sp)
+   8:	02010413          	addi	s0,sp,32
+   c:	000a07b7          	lui	a5,0xa0
+  10:	05078793          	addi	a5,a5,80 # a0050 <_start+0xa0050>
+  14:	fef42623          	sw	a5,-20(s0)
+  18:	fec42503          	lw	a0,-20(s0)
+  1c:	05d00893          	li	a7,93
+  20:	00000073          	ecall
+
+lds/t_lui-rv32_ld.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 130101fe 232e8100 13040102 b7070a00  ....#...........
+ 0010 93870705 2326f4fe 0325c4fe 9308d005  ....#&...%......
+ 0020 73000000                             s...            

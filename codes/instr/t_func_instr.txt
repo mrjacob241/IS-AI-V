@@ -1,0 +1,42 @@
+
+lds/t_func-rv32_ld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	fe010113          	addi	sp,sp,-32
+   4:	00112e23          	sw	ra,28(sp)
+   8:	00812c23          	sw	s0,24(sp)
+   c:	02010413          	addi	s0,sp,32
+  10:	00700593          	li	a1,7
+  14:	00500513          	li	a0,5
+  18:	014000ef          	jal	2c <_ZL3addii>
+  1c:	fea42623          	sw	a0,-20(s0)
+  20:	fec42503          	lw	a0,-20(s0)
+  24:	05d00893          	li	a7,93
+  28:	00000073          	ecall
+
+0000002c <_ZL3addii>:
+  2c:	fe010113          	addi	sp,sp,-32
+  30:	00812e23          	sw	s0,28(sp)
+  34:	02010413          	addi	s0,sp,32
+  38:	fea42623          	sw	a0,-20(s0)
+  3c:	feb42423          	sw	a1,-24(s0)
+  40:	fec42703          	lw	a4,-20(s0)
+  44:	fe842783          	lw	a5,-24(s0)
+  48:	00f707b3          	add	a5,a4,a5
+  4c:	00078513          	mv	a0,a5
+  50:	01c12403          	lw	s0,28(sp)
+  54:	02010113          	addi	sp,sp,32
+  58:	00008067          	ret
+
+lds/t_func-rv32_ld.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 130101fe 232e1100 232c8100 13040102  ....#...#,......
+ 0010 93057000 13055000 ef004001 2326a4fe  ..p...P...@.#&..
+ 0020 0325c4fe 9308d005 73000000 130101fe  .%......s.......
+ 0030 232e8100 13040102 2326a4fe 2324b4fe  #.......#&..#$..
+ 0040 0327c4fe 832784fe b307f700 13850700  .'...'..........
+ 0050 0324c101 13010102 67800000           .$......g...    
