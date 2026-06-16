@@ -1,0 +1,978 @@
+
+lds/pong_test-rv32_ld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	fc010113          	addi	sp,sp,-64
+   4:	02112e23          	sw	ra,60(sp)
+   8:	02812c23          	sw	s0,56(sp)
+   c:	04010413          	addi	s0,sp,64
+  10:	05000793          	li	a5,80
+  14:	fef42623          	sw	a5,-20(s0)
+  18:	03c00793          	li	a5,60
+  1c:	fef42423          	sw	a5,-24(s0)
+  20:	00200793          	li	a5,2
+  24:	fef42223          	sw	a5,-28(s0)
+  28:	00100793          	li	a5,1
+  2c:	fef42023          	sw	a5,-32(s0)
+  30:	03200793          	li	a5,50
+  34:	fcf42e23          	sw	a5,-36(s0)
+  38:	03200793          	li	a5,50
+  3c:	fcf42c23          	sw	a5,-40(s0)
+  40:	fec42783          	lw	a5,-20(s0)
+  44:	fcf42a23          	sw	a5,-44(s0)
+  48:	fe842783          	lw	a5,-24(s0)
+  4c:	fcf42823          	sw	a5,-48(s0)
+  50:	fdc42783          	lw	a5,-36(s0)
+  54:	fcf42623          	sw	a5,-52(s0)
+  58:	fd842783          	lw	a5,-40(s0)
+  5c:	fcf42423          	sw	a5,-56(s0)
+  60:	fc042223          	sw	zero,-60(s0)
+  64:	fc042023          	sw	zero,-64(s0)
+  68:	fd842683          	lw	a3,-40(s0)
+  6c:	fdc42603          	lw	a2,-36(s0)
+  70:	fe842583          	lw	a1,-24(s0)
+  74:	fec42503          	lw	a0,-20(s0)
+  78:	3e0000ef          	jal	458 <_ZL10draw_sceneiiii>
+  7c:	fc442703          	lw	a4,-60(s0)
+  80:	05800793          	li	a5,88
+  84:	2ee7dc63          	bge	a5,a4,37c <_start+0x37c>
+  88:	000017b7          	lui	a5,0x1
+  8c:	e8c78513          	addi	a0,a5,-372 # e8c <Keyboard>
+  90:	101000ef          	jal	990 <_ZN14KeyboardDevice6UpdateEv>
+  94:	fc042223          	sw	zero,-60(s0)
+  98:	00100593          	li	a1,1
+  9c:	000017b7          	lui	a5,0x1
+  a0:	e8c78513          	addi	a0,a5,-372 # e8c <Keyboard>
+  a4:	12d000ef          	jal	9d0 <_ZNK14KeyboardDevice10KeyPressedEj>
+  a8:	00050793          	mv	a5,a0
+  ac:	00078863          	beqz	a5,bc <_start+0xbc>
+  b0:	fdc42783          	lw	a5,-36(s0)
+  b4:	ffd78793          	addi	a5,a5,-3
+  b8:	fcf42e23          	sw	a5,-36(s0)
+  bc:	00200593          	li	a1,2
+  c0:	000017b7          	lui	a5,0x1
+  c4:	e8c78513          	addi	a0,a5,-372 # e8c <Keyboard>
+  c8:	109000ef          	jal	9d0 <_ZNK14KeyboardDevice10KeyPressedEj>
+  cc:	00050793          	mv	a5,a0
+  d0:	00078863          	beqz	a5,e0 <_start+0xe0>
+  d4:	fdc42783          	lw	a5,-36(s0)
+  d8:	00378793          	addi	a5,a5,3
+  dc:	fcf42e23          	sw	a5,-36(s0)
+  e0:	fdc42503          	lw	a0,-36(s0)
+  e4:	404000ef          	jal	4e8 <_ZL12clamp_paddlei>
+  e8:	fca42e23          	sw	a0,-36(s0)
+  ec:	fec42703          	lw	a4,-20(s0)
+  f0:	fe442783          	lw	a5,-28(s0)
+  f4:	00f707b3          	add	a5,a4,a5
+  f8:	fef42623          	sw	a5,-20(s0)
+  fc:	fe842703          	lw	a4,-24(s0)
+ 100:	fe042783          	lw	a5,-32(s0)
+ 104:	00f707b3          	add	a5,a4,a5
+ 108:	fef42423          	sw	a5,-24(s0)
+ 10c:	fe842703          	lw	a4,-24(s0)
+ 110:	01800793          	li	a5,24
+ 114:	00e7d863          	bge	a5,a4,124 <_start+0x124>
+ 118:	fe842703          	lw	a4,-24(s0)
+ 11c:	05b00793          	li	a5,91
+ 120:	00e7d863          	bge	a5,a4,130 <_start+0x130>
+ 124:	fe042783          	lw	a5,-32(s0)
+ 128:	40f007b3          	neg	a5,a5
+ 12c:	fef42023          	sw	a5,-32(s0)
+ 130:	fec42703          	lw	a4,-20(s0)
+ 134:	01400793          	li	a5,20
+ 138:	0ce7c263          	blt	a5,a4,1fc <_start+0x1fc>
+ 13c:	00cc27b7          	lui	a5,0xcc2
+ 140:	02078513          	addi	a0,a5,32 # cc2020 <Keyboard+0xcc1194>
+ 144:	52c000ef          	jal	670 <Screen_Clear>
+ 148:	fc042783          	lw	a5,-64(s0)
+ 14c:	00178793          	addi	a5,a5,1
+ 150:	fcf42023          	sw	a5,-64(s0)
+ 154:	fc042503          	lw	a0,-64(s0)
+ 158:	770000ef          	jal	8c8 <Screen_Update>
+ 15c:	000167b7          	lui	a5,0x16
+ 160:	f9078513          	addi	a0,a5,-112 # 15f90 <Keyboard+0x15104>
+ 164:	794000ef          	jal	8f8 <Screen_Delay>
+ 168:	05000793          	li	a5,80
+ 16c:	fef42623          	sw	a5,-20(s0)
+ 170:	03c00793          	li	a5,60
+ 174:	fef42423          	sw	a5,-24(s0)
+ 178:	00200793          	li	a5,2
+ 17c:	fef42223          	sw	a5,-28(s0)
+ 180:	00100793          	li	a5,1
+ 184:	fef42023          	sw	a5,-32(s0)
+ 188:	03200793          	li	a5,50
+ 18c:	fcf42e23          	sw	a5,-36(s0)
+ 190:	03200793          	li	a5,50
+ 194:	fcf42c23          	sw	a5,-40(s0)
+ 198:	fec42783          	lw	a5,-20(s0)
+ 19c:	fcf42a23          	sw	a5,-44(s0)
+ 1a0:	fe842783          	lw	a5,-24(s0)
+ 1a4:	fcf42823          	sw	a5,-48(s0)
+ 1a8:	fdc42783          	lw	a5,-36(s0)
+ 1ac:	fcf42623          	sw	a5,-52(s0)
+ 1b0:	fd842783          	lw	a5,-40(s0)
+ 1b4:	fcf42423          	sw	a5,-56(s0)
+ 1b8:	fc042223          	sw	zero,-60(s0)
+ 1bc:	00000513          	li	a0,0
+ 1c0:	4b0000ef          	jal	670 <Screen_Clear>
+ 1c4:	fd842683          	lw	a3,-40(s0)
+ 1c8:	fdc42603          	lw	a2,-36(s0)
+ 1cc:	fe842583          	lw	a1,-24(s0)
+ 1d0:	fec42503          	lw	a0,-20(s0)
+ 1d4:	284000ef          	jal	458 <_ZL10draw_sceneiiii>
+ 1d8:	fc042783          	lw	a5,-64(s0)
+ 1dc:	00178793          	addi	a5,a5,1
+ 1e0:	fcf42023          	sw	a5,-64(s0)
+ 1e4:	fc042503          	lw	a0,-64(s0)
+ 1e8:	6e0000ef          	jal	8c8 <Screen_Update>
+ 1ec:	000037b7          	lui	a5,0x3
+ 1f0:	ee078513          	addi	a0,a5,-288 # 2ee0 <Keyboard+0x2054>
+ 1f4:	704000ef          	jal	8f8 <Screen_Delay>
+ 1f8:	0400006f          	j	238 <_start+0x238>
+ 1fc:	fec42703          	lw	a4,-20(s0)
+ 200:	02000793          	li	a5,32
+ 204:	02e7ca63          	blt	a5,a4,238 <_start+0x238>
+ 208:	fe442783          	lw	a5,-28(s0)
+ 20c:	0207d663          	bgez	a5,238 <_start+0x238>
+ 210:	fe842783          	lw	a5,-24(s0)
+ 214:	00478793          	addi	a5,a5,4
+ 218:	fdc42703          	lw	a4,-36(s0)
+ 21c:	00e7ce63          	blt	a5,a4,238 <_start+0x238>
+ 220:	fdc42783          	lw	a5,-36(s0)
+ 224:	01478793          	addi	a5,a5,20
+ 228:	fe842703          	lw	a4,-24(s0)
+ 22c:	00e7c663          	blt	a5,a4,238 <_start+0x238>
+ 230:	00200793          	li	a5,2
+ 234:	fef42223          	sw	a5,-28(s0)
+ 238:	fec42703          	lw	a4,-20(s0)
+ 23c:	07b00793          	li	a5,123
+ 240:	04e7d063          	bge	a5,a4,280 <_start+0x280>
+ 244:	fe442783          	lw	a5,-28(s0)
+ 248:	02f05c63          	blez	a5,280 <_start+0x280>
+ 24c:	fe842783          	lw	a5,-24(s0)
+ 250:	00478793          	addi	a5,a5,4
+ 254:	fd842703          	lw	a4,-40(s0)
+ 258:	02e7c063          	blt	a5,a4,278 <_start+0x278>
+ 25c:	fd842783          	lw	a5,-40(s0)
+ 260:	01478793          	addi	a5,a5,20
+ 264:	fe842703          	lw	a4,-24(s0)
+ 268:	00e7c863          	blt	a5,a4,278 <_start+0x278>
+ 26c:	ffe00793          	li	a5,-2
+ 270:	fef42223          	sw	a5,-28(s0)
+ 274:	00c0006f          	j	280 <_start+0x280>
+ 278:	ffe00793          	li	a5,-2
+ 27c:	fef42223          	sw	a5,-28(s0)
+ 280:	fe842783          	lw	a5,-24(s0)
+ 284:	ff678793          	addi	a5,a5,-10
+ 288:	00078513          	mv	a0,a5
+ 28c:	25c000ef          	jal	4e8 <_ZL12clamp_paddlei>
+ 290:	fca42c23          	sw	a0,-40(s0)
+ 294:	00400793          	li	a5,4
+ 298:	00400713          	li	a4,4
+ 29c:	fe842683          	lw	a3,-24(s0)
+ 2a0:	fec42603          	lw	a2,-20(s0)
+ 2a4:	fd042583          	lw	a1,-48(s0)
+ 2a8:	fd442503          	lw	a0,-44(s0)
+ 2ac:	460000ef          	jal	70c <Screen_Erase_Moved_Rectangle>
+ 2b0:	01400793          	li	a5,20
+ 2b4:	00400713          	li	a4,4
+ 2b8:	fdc42683          	lw	a3,-36(s0)
+ 2bc:	01a00613          	li	a2,26
+ 2c0:	fcc42583          	lw	a1,-52(s0)
+ 2c4:	01a00513          	li	a0,26
+ 2c8:	444000ef          	jal	70c <Screen_Erase_Moved_Rectangle>
+ 2cc:	01400793          	li	a5,20
+ 2d0:	00400713          	li	a4,4
+ 2d4:	fd842683          	lw	a3,-40(s0)
+ 2d8:	08200613          	li	a2,130
+ 2dc:	fc842583          	lw	a1,-56(s0)
+ 2e0:	08200513          	li	a0,130
+ 2e4:	428000ef          	jal	70c <Screen_Erase_Moved_Rectangle>
+ 2e8:	0ac000ef          	jal	394 <_ZL8draw_netv>
+ 2ec:	110000ef          	jal	3fc <_ZL11draw_borderv>
+ 2f0:	00e8f7b7          	lui	a5,0xe8f
+ 2f4:	8e878713          	addi	a4,a5,-1816 # e8e8e8 <Keyboard+0xe8da5c>
+ 2f8:	01400693          	li	a3,20
+ 2fc:	00400613          	li	a2,4
+ 300:	fdc42583          	lw	a1,-36(s0)
+ 304:	01a00513          	li	a0,26
+ 308:	2a4000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 30c:	00e8f7b7          	lui	a5,0xe8f
+ 310:	8e878713          	addi	a4,a5,-1816 # e8e8e8 <Keyboard+0xe8da5c>
+ 314:	01400693          	li	a3,20
+ 318:	00400613          	li	a2,4
+ 31c:	fd842583          	lw	a1,-40(s0)
+ 320:	08200513          	li	a0,130
+ 324:	288000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 328:	00ffd7b7          	lui	a5,0xffd
+ 32c:	c3078713          	addi	a4,a5,-976 # ffcc30 <Keyboard+0xffbda4>
+ 330:	00400693          	li	a3,4
+ 334:	00400613          	li	a2,4
+ 338:	fe842583          	lw	a1,-24(s0)
+ 33c:	fec42503          	lw	a0,-20(s0)
+ 340:	26c000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 344:	fec42783          	lw	a5,-20(s0)
+ 348:	fcf42a23          	sw	a5,-44(s0)
+ 34c:	fe842783          	lw	a5,-24(s0)
+ 350:	fcf42823          	sw	a5,-48(s0)
+ 354:	fdc42783          	lw	a5,-36(s0)
+ 358:	fcf42623          	sw	a5,-52(s0)
+ 35c:	fd842783          	lw	a5,-40(s0)
+ 360:	fcf42423          	sw	a5,-56(s0)
+ 364:	fc042783          	lw	a5,-64(s0)
+ 368:	00178793          	addi	a5,a5,1
+ 36c:	fcf42023          	sw	a5,-64(s0)
+ 370:	fc042503          	lw	a0,-64(s0)
+ 374:	554000ef          	jal	8c8 <Screen_Update>
+ 378:	0100006f          	j	388 <_start+0x388>
+ 37c:	fc442783          	lw	a5,-60(s0)
+ 380:	00178793          	addi	a5,a5,1
+ 384:	fcf42223          	sw	a5,-60(s0)
+ 388:	4b000513          	li	a0,1200
+ 38c:	56c000ef          	jal	8f8 <Screen_Delay>
+ 390:	cedff06f          	j	7c <_start+0x7c>
+
+00000394 <_ZL8draw_netv>:
+ 394:	fe010113          	addi	sp,sp,-32
+ 398:	00112e23          	sw	ra,28(sp)
+ 39c:	00812c23          	sw	s0,24(sp)
+ 3a0:	02010413          	addi	s0,sp,32
+ 3a4:	01800793          	li	a5,24
+ 3a8:	fef42623          	sw	a5,-20(s0)
+ 3ac:	02c0006f          	j	3d8 <_ZL8draw_netv+0x44>
+ 3b0:	006067b7          	lui	a5,0x606
+ 3b4:	06078713          	addi	a4,a5,96 # 606060 <Keyboard+0x6051d4>
+ 3b8:	00400693          	li	a3,4
+ 3bc:	00200613          	li	a2,2
+ 3c0:	fec42583          	lw	a1,-20(s0)
+ 3c4:	04f00513          	li	a0,79
+ 3c8:	1e4000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 3cc:	fec42783          	lw	a5,-20(s0)
+ 3d0:	00878793          	addi	a5,a5,8
+ 3d4:	fef42623          	sw	a5,-20(s0)
+ 3d8:	fec42703          	lw	a4,-20(s0)
+ 3dc:	05f00793          	li	a5,95
+ 3e0:	fce7d8e3          	bge	a5,a4,3b0 <_ZL8draw_netv+0x1c>
+ 3e4:	00000013          	nop
+ 3e8:	00000013          	nop
+ 3ec:	01c12083          	lw	ra,28(sp)
+ 3f0:	01812403          	lw	s0,24(sp)
+ 3f4:	02010113          	addi	sp,sp,32
+ 3f8:	00008067          	ret
+
+000003fc <_ZL11draw_borderv>:
+ 3fc:	ff010113          	addi	sp,sp,-16
+ 400:	00112623          	sw	ra,12(sp)
+ 404:	00812423          	sw	s0,8(sp)
+ 408:	01010413          	addi	s0,sp,16
+ 40c:	004047b7          	lui	a5,0x404
+ 410:	04078713          	addi	a4,a5,64 # 404040 <Keyboard+0x4031b4>
+ 414:	00200693          	li	a3,2
+ 418:	07800613          	li	a2,120
+ 41c:	01400593          	li	a1,20
+ 420:	01400513          	li	a0,20
+ 424:	188000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 428:	004047b7          	lui	a5,0x404
+ 42c:	04078713          	addi	a4,a5,64 # 404040 <Keyboard+0x4031b4>
+ 430:	00200693          	li	a3,2
+ 434:	07800613          	li	a2,120
+ 438:	06200593          	li	a1,98
+ 43c:	01400513          	li	a0,20
+ 440:	16c000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 444:	00000013          	nop
+ 448:	00c12083          	lw	ra,12(sp)
+ 44c:	00812403          	lw	s0,8(sp)
+ 450:	01010113          	addi	sp,sp,16
+ 454:	00008067          	ret
+
+00000458 <_ZL10draw_sceneiiii>:
+ 458:	fe010113          	addi	sp,sp,-32
+ 45c:	00112e23          	sw	ra,28(sp)
+ 460:	00812c23          	sw	s0,24(sp)
+ 464:	02010413          	addi	s0,sp,32
+ 468:	fea42623          	sw	a0,-20(s0)
+ 46c:	feb42423          	sw	a1,-24(s0)
+ 470:	fec42223          	sw	a2,-28(s0)
+ 474:	fed42023          	sw	a3,-32(s0)
+ 478:	f85ff0ef          	jal	3fc <_ZL11draw_borderv>
+ 47c:	f19ff0ef          	jal	394 <_ZL8draw_netv>
+ 480:	00e8f7b7          	lui	a5,0xe8f
+ 484:	8e878713          	addi	a4,a5,-1816 # e8e8e8 <Keyboard+0xe8da5c>
+ 488:	01400693          	li	a3,20
+ 48c:	00400613          	li	a2,4
+ 490:	fe442583          	lw	a1,-28(s0)
+ 494:	01a00513          	li	a0,26
+ 498:	114000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 49c:	00e8f7b7          	lui	a5,0xe8f
+ 4a0:	8e878713          	addi	a4,a5,-1816 # e8e8e8 <Keyboard+0xe8da5c>
+ 4a4:	01400693          	li	a3,20
+ 4a8:	00400613          	li	a2,4
+ 4ac:	fe042583          	lw	a1,-32(s0)
+ 4b0:	08200513          	li	a0,130
+ 4b4:	0f8000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 4b8:	00ffd7b7          	lui	a5,0xffd
+ 4bc:	c3078713          	addi	a4,a5,-976 # ffcc30 <Keyboard+0xffbda4>
+ 4c0:	00400693          	li	a3,4
+ 4c4:	00400613          	li	a2,4
+ 4c8:	fe842583          	lw	a1,-24(s0)
+ 4cc:	fec42503          	lw	a0,-20(s0)
+ 4d0:	0dc000ef          	jal	5ac <Screen_Draw_Rectangle>
+ 4d4:	00000013          	nop
+ 4d8:	01c12083          	lw	ra,28(sp)
+ 4dc:	01812403          	lw	s0,24(sp)
+ 4e0:	02010113          	addi	sp,sp,32
+ 4e4:	00008067          	ret
+
+000004e8 <_ZL12clamp_paddlei>:
+ 4e8:	fe010113          	addi	sp,sp,-32
+ 4ec:	00812e23          	sw	s0,28(sp)
+ 4f0:	02010413          	addi	s0,sp,32
+ 4f4:	fea42623          	sw	a0,-20(s0)
+ 4f8:	fec42703          	lw	a4,-20(s0)
+ 4fc:	01700793          	li	a5,23
+ 500:	00e7c663          	blt	a5,a4,50c <_ZL12clamp_paddlei+0x24>
+ 504:	01800793          	li	a5,24
+ 508:	01c0006f          	j	524 <_ZL12clamp_paddlei+0x3c>
+ 50c:	fec42703          	lw	a4,-20(s0)
+ 510:	04c00793          	li	a5,76
+ 514:	00e7d663          	bge	a5,a4,520 <_ZL12clamp_paddlei+0x38>
+ 518:	04c00793          	li	a5,76
+ 51c:	0080006f          	j	524 <_ZL12clamp_paddlei+0x3c>
+ 520:	fec42783          	lw	a5,-20(s0)
+ 524:	00078513          	mv	a0,a5
+ 528:	01c12403          	lw	s0,28(sp)
+ 52c:	02010113          	addi	sp,sp,32
+ 530:	00008067          	ret
+
+00000534 <Screen_Max>:
+ 534:	fe010113          	addi	sp,sp,-32
+ 538:	00812e23          	sw	s0,28(sp)
+ 53c:	02010413          	addi	s0,sp,32
+ 540:	fea42623          	sw	a0,-20(s0)
+ 544:	feb42423          	sw	a1,-24(s0)
+ 548:	fec42703          	lw	a4,-20(s0)
+ 54c:	fe842783          	lw	a5,-24(s0)
+ 550:	00e7d663          	bge	a5,a4,55c <Screen_Max+0x28>
+ 554:	fec42783          	lw	a5,-20(s0)
+ 558:	0080006f          	j	560 <Screen_Max+0x2c>
+ 55c:	fe842783          	lw	a5,-24(s0)
+ 560:	00078513          	mv	a0,a5
+ 564:	01c12403          	lw	s0,28(sp)
+ 568:	02010113          	addi	sp,sp,32
+ 56c:	00008067          	ret
+
+00000570 <Screen_Min>:
+ 570:	fe010113          	addi	sp,sp,-32
+ 574:	00812e23          	sw	s0,28(sp)
+ 578:	02010413          	addi	s0,sp,32
+ 57c:	fea42623          	sw	a0,-20(s0)
+ 580:	feb42423          	sw	a1,-24(s0)
+ 584:	fec42703          	lw	a4,-20(s0)
+ 588:	fe842783          	lw	a5,-24(s0)
+ 58c:	00f75663          	bge	a4,a5,598 <Screen_Min+0x28>
+ 590:	fec42783          	lw	a5,-20(s0)
+ 594:	0080006f          	j	59c <Screen_Min+0x2c>
+ 598:	fe842783          	lw	a5,-24(s0)
+ 59c:	00078513          	mv	a0,a5
+ 5a0:	01c12403          	lw	s0,28(sp)
+ 5a4:	02010113          	addi	sp,sp,32
+ 5a8:	00008067          	ret
+
+000005ac <Screen_Draw_Rectangle>:
+ 5ac:	fc010113          	addi	sp,sp,-64
+ 5b0:	02812e23          	sw	s0,60(sp)
+ 5b4:	04010413          	addi	s0,sp,64
+ 5b8:	fca42e23          	sw	a0,-36(s0)
+ 5bc:	fcb42c23          	sw	a1,-40(s0)
+ 5c0:	fcc42a23          	sw	a2,-44(s0)
+ 5c4:	fcd42823          	sw	a3,-48(s0)
+ 5c8:	fce42623          	sw	a4,-52(s0)
+ 5cc:	fe042623          	sw	zero,-20(s0)
+ 5d0:	0800006f          	j	650 <Screen_Draw_Rectangle+0xa4>
+ 5d4:	fd842703          	lw	a4,-40(s0)
+ 5d8:	fec42783          	lw	a5,-20(s0)
+ 5dc:	00f707b3          	add	a5,a4,a5
+ 5e0:	fef42223          	sw	a5,-28(s0)
+ 5e4:	fe442783          	lw	a5,-28(s0)
+ 5e8:	00779713          	slli	a4,a5,0x7
+ 5ec:	fe442783          	lw	a5,-28(s0)
+ 5f0:	00579793          	slli	a5,a5,0x5
+ 5f4:	00f707b3          	add	a5,a4,a5
+ 5f8:	fef42023          	sw	a5,-32(s0)
+ 5fc:	fe042423          	sw	zero,-24(s0)
+ 600:	0380006f          	j	638 <Screen_Draw_Rectangle+0x8c>
+ 604:	fe042703          	lw	a4,-32(s0)
+ 608:	fdc42783          	lw	a5,-36(s0)
+ 60c:	00f70733          	add	a4,a4,a5
+ 610:	fe842783          	lw	a5,-24(s0)
+ 614:	00f707b3          	add	a5,a4,a5
+ 618:	00279713          	slli	a4,a5,0x2
+ 61c:	000207b7          	lui	a5,0x20
+ 620:	00f707b3          	add	a5,a4,a5
+ 624:	fcc42703          	lw	a4,-52(s0)
+ 628:	00e7a023          	sw	a4,0(a5) # 20000 <Keyboard+0x1f174>
+ 62c:	fe842783          	lw	a5,-24(s0)
+ 630:	00178793          	addi	a5,a5,1
+ 634:	fef42423          	sw	a5,-24(s0)
+ 638:	fe842703          	lw	a4,-24(s0)
+ 63c:	fd442783          	lw	a5,-44(s0)
+ 640:	fcf742e3          	blt	a4,a5,604 <Screen_Draw_Rectangle+0x58>
+ 644:	fec42783          	lw	a5,-20(s0)
+ 648:	00178793          	addi	a5,a5,1
+ 64c:	fef42623          	sw	a5,-20(s0)
+ 650:	fec42703          	lw	a4,-20(s0)
+ 654:	fd042783          	lw	a5,-48(s0)
+ 658:	f6f74ee3          	blt	a4,a5,5d4 <Screen_Draw_Rectangle+0x28>
+ 65c:	00000013          	nop
+ 660:	00000013          	nop
+ 664:	03c12403          	lw	s0,60(sp)
+ 668:	04010113          	addi	sp,sp,64
+ 66c:	00008067          	ret
+
+00000670 <Screen_Clear>:
+ 670:	fd010113          	addi	sp,sp,-48
+ 674:	02812623          	sw	s0,44(sp)
+ 678:	03010413          	addi	s0,sp,48
+ 67c:	fca42e23          	sw	a0,-36(s0)
+ 680:	fe042623          	sw	zero,-20(s0)
+ 684:	0680006f          	j	6ec <Screen_Clear+0x7c>
+ 688:	fec42783          	lw	a5,-20(s0)
+ 68c:	00779713          	slli	a4,a5,0x7
+ 690:	fec42783          	lw	a5,-20(s0)
+ 694:	00579793          	slli	a5,a5,0x5
+ 698:	00f707b3          	add	a5,a4,a5
+ 69c:	fef42223          	sw	a5,-28(s0)
+ 6a0:	fe042423          	sw	zero,-24(s0)
+ 6a4:	0300006f          	j	6d4 <Screen_Clear+0x64>
+ 6a8:	fe442703          	lw	a4,-28(s0)
+ 6ac:	fe842783          	lw	a5,-24(s0)
+ 6b0:	00f707b3          	add	a5,a4,a5
+ 6b4:	00279713          	slli	a4,a5,0x2
+ 6b8:	000207b7          	lui	a5,0x20
+ 6bc:	00f707b3          	add	a5,a4,a5
+ 6c0:	fdc42703          	lw	a4,-36(s0)
+ 6c4:	00e7a023          	sw	a4,0(a5) # 20000 <Keyboard+0x1f174>
+ 6c8:	fe842783          	lw	a5,-24(s0)
+ 6cc:	00178793          	addi	a5,a5,1
+ 6d0:	fef42423          	sw	a5,-24(s0)
+ 6d4:	fe842703          	lw	a4,-24(s0)
+ 6d8:	09f00793          	li	a5,159
+ 6dc:	fce7d6e3          	bge	a5,a4,6a8 <Screen_Clear+0x38>
+ 6e0:	fec42783          	lw	a5,-20(s0)
+ 6e4:	00178793          	addi	a5,a5,1
+ 6e8:	fef42623          	sw	a5,-20(s0)
+ 6ec:	fec42703          	lw	a4,-20(s0)
+ 6f0:	07700793          	li	a5,119
+ 6f4:	f8e7dae3          	bge	a5,a4,688 <Screen_Clear+0x18>
+ 6f8:	00000013          	nop
+ 6fc:	00000013          	nop
+ 700:	02c12403          	lw	s0,44(sp)
+ 704:	03010113          	addi	sp,sp,48
+ 708:	00008067          	ret
+
+0000070c <Screen_Erase_Moved_Rectangle>:
+ 70c:	fb010113          	addi	sp,sp,-80
+ 710:	04112623          	sw	ra,76(sp)
+ 714:	04812423          	sw	s0,72(sp)
+ 718:	05010413          	addi	s0,sp,80
+ 71c:	fca42623          	sw	a0,-52(s0)
+ 720:	fcb42423          	sw	a1,-56(s0)
+ 724:	fcc42223          	sw	a2,-60(s0)
+ 728:	fcd42023          	sw	a3,-64(s0)
+ 72c:	fae42e23          	sw	a4,-68(s0)
+ 730:	faf42c23          	sw	a5,-72(s0)
+ 734:	fcc42703          	lw	a4,-52(s0)
+ 738:	fbc42783          	lw	a5,-68(s0)
+ 73c:	00f707b3          	add	a5,a4,a5
+ 740:	fef42623          	sw	a5,-20(s0)
+ 744:	fc842703          	lw	a4,-56(s0)
+ 748:	fb842783          	lw	a5,-72(s0)
+ 74c:	00f707b3          	add	a5,a4,a5
+ 750:	fef42423          	sw	a5,-24(s0)
+ 754:	fc442703          	lw	a4,-60(s0)
+ 758:	fbc42783          	lw	a5,-68(s0)
+ 75c:	00f707b3          	add	a5,a4,a5
+ 760:	fef42223          	sw	a5,-28(s0)
+ 764:	fc042703          	lw	a4,-64(s0)
+ 768:	fb842783          	lw	a5,-72(s0)
+ 76c:	00f707b3          	add	a5,a4,a5
+ 770:	fef42023          	sw	a5,-32(s0)
+ 774:	fc442583          	lw	a1,-60(s0)
+ 778:	fcc42503          	lw	a0,-52(s0)
+ 77c:	db9ff0ef          	jal	534 <Screen_Max>
+ 780:	fca42e23          	sw	a0,-36(s0)
+ 784:	fc042583          	lw	a1,-64(s0)
+ 788:	fc842503          	lw	a0,-56(s0)
+ 78c:	da9ff0ef          	jal	534 <Screen_Max>
+ 790:	fca42c23          	sw	a0,-40(s0)
+ 794:	fe442583          	lw	a1,-28(s0)
+ 798:	fec42503          	lw	a0,-20(s0)
+ 79c:	dd5ff0ef          	jal	570 <Screen_Min>
+ 7a0:	fca42a23          	sw	a0,-44(s0)
+ 7a4:	fe042583          	lw	a1,-32(s0)
+ 7a8:	fe842503          	lw	a0,-24(s0)
+ 7ac:	dc5ff0ef          	jal	570 <Screen_Min>
+ 7b0:	fca42823          	sw	a0,-48(s0)
+ 7b4:	fdc42703          	lw	a4,-36(s0)
+ 7b8:	fd442783          	lw	a5,-44(s0)
+ 7bc:	00f75863          	bge	a4,a5,7cc <Screen_Erase_Moved_Rectangle+0xc0>
+ 7c0:	fd842703          	lw	a4,-40(s0)
+ 7c4:	fd042783          	lw	a5,-48(s0)
+ 7c8:	02f74063          	blt	a4,a5,7e8 <Screen_Erase_Moved_Rectangle+0xdc>
+ 7cc:	00000713          	li	a4,0
+ 7d0:	fb842683          	lw	a3,-72(s0)
+ 7d4:	fbc42603          	lw	a2,-68(s0)
+ 7d8:	fc842583          	lw	a1,-56(s0)
+ 7dc:	fcc42503          	lw	a0,-52(s0)
+ 7e0:	dcdff0ef          	jal	5ac <Screen_Draw_Rectangle>
+ 7e4:	0d40006f          	j	8b8 <Screen_Erase_Moved_Rectangle+0x1ac>
+ 7e8:	fc842703          	lw	a4,-56(s0)
+ 7ec:	fd842783          	lw	a5,-40(s0)
+ 7f0:	02f75463          	bge	a4,a5,818 <Screen_Erase_Moved_Rectangle+0x10c>
+ 7f4:	fd842703          	lw	a4,-40(s0)
+ 7f8:	fc842783          	lw	a5,-56(s0)
+ 7fc:	40f707b3          	sub	a5,a4,a5
+ 800:	00000713          	li	a4,0
+ 804:	00078693          	mv	a3,a5
+ 808:	fbc42603          	lw	a2,-68(s0)
+ 80c:	fc842583          	lw	a1,-56(s0)
+ 810:	fcc42503          	lw	a0,-52(s0)
+ 814:	d99ff0ef          	jal	5ac <Screen_Draw_Rectangle>
+ 818:	fd042703          	lw	a4,-48(s0)
+ 81c:	fe842783          	lw	a5,-24(s0)
+ 820:	02f75463          	bge	a4,a5,848 <Screen_Erase_Moved_Rectangle+0x13c>
+ 824:	fe842703          	lw	a4,-24(s0)
+ 828:	fd042783          	lw	a5,-48(s0)
+ 82c:	40f707b3          	sub	a5,a4,a5
+ 830:	00000713          	li	a4,0
+ 834:	00078693          	mv	a3,a5
+ 838:	fbc42603          	lw	a2,-68(s0)
+ 83c:	fd042583          	lw	a1,-48(s0)
+ 840:	fcc42503          	lw	a0,-52(s0)
+ 844:	d69ff0ef          	jal	5ac <Screen_Draw_Rectangle>
+ 848:	fcc42703          	lw	a4,-52(s0)
+ 84c:	fdc42783          	lw	a5,-36(s0)
+ 850:	02f75863          	bge	a4,a5,880 <Screen_Erase_Moved_Rectangle+0x174>
+ 854:	fdc42703          	lw	a4,-36(s0)
+ 858:	fcc42783          	lw	a5,-52(s0)
+ 85c:	40f70633          	sub	a2,a4,a5
+ 860:	fd042703          	lw	a4,-48(s0)
+ 864:	fd842783          	lw	a5,-40(s0)
+ 868:	40f707b3          	sub	a5,a4,a5
+ 86c:	00000713          	li	a4,0
+ 870:	00078693          	mv	a3,a5
+ 874:	fd842583          	lw	a1,-40(s0)
+ 878:	fcc42503          	lw	a0,-52(s0)
+ 87c:	d31ff0ef          	jal	5ac <Screen_Draw_Rectangle>
+ 880:	fd442703          	lw	a4,-44(s0)
+ 884:	fec42783          	lw	a5,-20(s0)
+ 888:	02f75863          	bge	a4,a5,8b8 <Screen_Erase_Moved_Rectangle+0x1ac>
+ 88c:	fec42703          	lw	a4,-20(s0)
+ 890:	fd442783          	lw	a5,-44(s0)
+ 894:	40f70633          	sub	a2,a4,a5
+ 898:	fd042703          	lw	a4,-48(s0)
+ 89c:	fd842783          	lw	a5,-40(s0)
+ 8a0:	40f707b3          	sub	a5,a4,a5
+ 8a4:	00000713          	li	a4,0
+ 8a8:	00078693          	mv	a3,a5
+ 8ac:	fd842583          	lw	a1,-40(s0)
+ 8b0:	fd442503          	lw	a0,-44(s0)
+ 8b4:	cf9ff0ef          	jal	5ac <Screen_Draw_Rectangle>
+ 8b8:	04c12083          	lw	ra,76(sp)
+ 8bc:	04812403          	lw	s0,72(sp)
+ 8c0:	05010113          	addi	sp,sp,80
+ 8c4:	00008067          	ret
+
+000008c8 <Screen_Update>:
+ 8c8:	fe010113          	addi	sp,sp,-32
+ 8cc:	00812e23          	sw	s0,28(sp)
+ 8d0:	02010413          	addi	s0,sp,32
+ 8d4:	fea42623          	sw	a0,-20(s0)
+ 8d8:	000407b7          	lui	a5,0x40
+ 8dc:	01478793          	addi	a5,a5,20 # 40014 <Keyboard+0x3f188>
+ 8e0:	fec42703          	lw	a4,-20(s0)
+ 8e4:	00e7a023          	sw	a4,0(a5)
+ 8e8:	00000013          	nop
+ 8ec:	01c12403          	lw	s0,28(sp)
+ 8f0:	02010113          	addi	sp,sp,32
+ 8f4:	00008067          	ret
+
+000008f8 <Screen_Delay>:
+ 8f8:	fd010113          	addi	sp,sp,-48
+ 8fc:	02812623          	sw	s0,44(sp)
+ 900:	03010413          	addi	s0,sp,48
+ 904:	fca42e23          	sw	a0,-36(s0)
+ 908:	fe042623          	sw	zero,-20(s0)
+ 90c:	0100006f          	j	91c <Screen_Delay+0x24>
+ 910:	fec42783          	lw	a5,-20(s0)
+ 914:	00178793          	addi	a5,a5,1
+ 918:	fef42623          	sw	a5,-20(s0)
+ 91c:	fec42783          	lw	a5,-20(s0)
+ 920:	fdc42703          	lw	a4,-36(s0)
+ 924:	00e7a7b3          	slt	a5,a5,a4
+ 928:	0ff7f793          	zext.b	a5,a5
+ 92c:	fe0792e3          	bnez	a5,910 <Screen_Delay+0x18>
+ 930:	00000013          	nop
+ 934:	00000013          	nop
+ 938:	02c12403          	lw	s0,44(sp)
+ 93c:	03010113          	addi	sp,sp,48
+ 940:	00008067          	ret
+
+00000944 <_ZN9ScreenSDK18env_int_allow_zeroEPKci>:
+ 944:	fe010113          	addi	sp,sp,-32
+ 948:	00812e23          	sw	s0,28(sp)
+ 94c:	02010413          	addi	s0,sp,32
+ 950:	fea42623          	sw	a0,-20(s0)
+ 954:	feb42423          	sw	a1,-24(s0)
+ 958:	fe842783          	lw	a5,-24(s0)
+ 95c:	00078513          	mv	a0,a5
+ 960:	01c12403          	lw	s0,28(sp)
+ 964:	02010113          	addi	sp,sp,32
+ 968:	00008067          	ret
+
+0000096c <_ZN9ScreenSDK16run_live_captureERKNS_10LiveConfigE>:
+ 96c:	fe010113          	addi	sp,sp,-32
+ 970:	00812e23          	sw	s0,28(sp)
+ 974:	02010413          	addi	s0,sp,32
+ 978:	fea42623          	sw	a0,-20(s0)
+ 97c:	00100793          	li	a5,1
+ 980:	00078513          	mv	a0,a5
+ 984:	01c12403          	lw	s0,28(sp)
+ 988:	02010113          	addi	sp,sp,32
+ 98c:	00008067          	ret
+
+00000990 <_ZN14KeyboardDevice6UpdateEv>:
+ 990:	fe010113          	addi	sp,sp,-32
+ 994:	00812e23          	sw	s0,28(sp)
+ 998:	02010413          	addi	s0,sp,32
+ 99c:	fea42623          	sw	a0,-20(s0)
+ 9a0:	000017b7          	lui	a5,0x1
+ 9a4:	e807a703          	lw	a4,-384(a5) # e80 <_ZL22keyboard_current_state>
+ 9a8:	000017b7          	lui	a5,0x1
+ 9ac:	e8e7a223          	sw	a4,-380(a5) # e84 <_ZL23keyboard_previous_state>
+ 9b0:	000507b7          	lui	a5,0x50
+ 9b4:	0007a703          	lw	a4,0(a5) # 50000 <Keyboard+0x4f174>
+ 9b8:	000017b7          	lui	a5,0x1
+ 9bc:	e8e7a023          	sw	a4,-384(a5) # e80 <_ZL22keyboard_current_state>
+ 9c0:	00000013          	nop
+ 9c4:	01c12403          	lw	s0,28(sp)
+ 9c8:	02010113          	addi	sp,sp,32
+ 9cc:	00008067          	ret
+
+000009d0 <_ZNK14KeyboardDevice10KeyPressedEj>:
+ 9d0:	fe010113          	addi	sp,sp,-32
+ 9d4:	00812e23          	sw	s0,28(sp)
+ 9d8:	02010413          	addi	s0,sp,32
+ 9dc:	fea42623          	sw	a0,-20(s0)
+ 9e0:	feb42423          	sw	a1,-24(s0)
+ 9e4:	000017b7          	lui	a5,0x1
+ 9e8:	e807a703          	lw	a4,-384(a5) # e80 <_ZL22keyboard_current_state>
+ 9ec:	fe842783          	lw	a5,-24(s0)
+ 9f0:	00f777b3          	and	a5,a4,a5
+ 9f4:	00f037b3          	snez	a5,a5
+ 9f8:	0ff7f793          	zext.b	a5,a5
+ 9fc:	00078513          	mv	a0,a5
+ a00:	01c12403          	lw	s0,28(sp)
+ a04:	02010113          	addi	sp,sp,32
+ a08:	00008067          	ret
+
+00000a0c <_ZNK14KeyboardDevice7KeyDownEj>:
+ a0c:	fe010113          	addi	sp,sp,-32
+ a10:	00812e23          	sw	s0,28(sp)
+ a14:	02010413          	addi	s0,sp,32
+ a18:	fea42623          	sw	a0,-20(s0)
+ a1c:	feb42423          	sw	a1,-24(s0)
+ a20:	000017b7          	lui	a5,0x1
+ a24:	e807a703          	lw	a4,-384(a5) # e80 <_ZL22keyboard_current_state>
+ a28:	fe842783          	lw	a5,-24(s0)
+ a2c:	00f777b3          	and	a5,a4,a5
+ a30:	02078063          	beqz	a5,a50 <_ZNK14KeyboardDevice7KeyDownEj+0x44>
+ a34:	000017b7          	lui	a5,0x1
+ a38:	e847a703          	lw	a4,-380(a5) # e84 <_ZL23keyboard_previous_state>
+ a3c:	fe842783          	lw	a5,-24(s0)
+ a40:	00f777b3          	and	a5,a4,a5
+ a44:	00079663          	bnez	a5,a50 <_ZNK14KeyboardDevice7KeyDownEj+0x44>
+ a48:	00100793          	li	a5,1
+ a4c:	0080006f          	j	a54 <_ZNK14KeyboardDevice7KeyDownEj+0x48>
+ a50:	00000793          	li	a5,0
+ a54:	00078513          	mv	a0,a5
+ a58:	01c12403          	lw	s0,28(sp)
+ a5c:	02010113          	addi	sp,sp,32
+ a60:	00008067          	ret
+
+00000a64 <_ZNK14KeyboardDevice5KeyUpEj>:
+ a64:	fe010113          	addi	sp,sp,-32
+ a68:	00812e23          	sw	s0,28(sp)
+ a6c:	02010413          	addi	s0,sp,32
+ a70:	fea42623          	sw	a0,-20(s0)
+ a74:	feb42423          	sw	a1,-24(s0)
+ a78:	000017b7          	lui	a5,0x1
+ a7c:	e807a703          	lw	a4,-384(a5) # e80 <_ZL22keyboard_current_state>
+ a80:	fe842783          	lw	a5,-24(s0)
+ a84:	00f777b3          	and	a5,a4,a5
+ a88:	02079063          	bnez	a5,aa8 <_ZNK14KeyboardDevice5KeyUpEj+0x44>
+ a8c:	000017b7          	lui	a5,0x1
+ a90:	e847a703          	lw	a4,-380(a5) # e84 <_ZL23keyboard_previous_state>
+ a94:	fe842783          	lw	a5,-24(s0)
+ a98:	00f777b3          	and	a5,a4,a5
+ a9c:	00078663          	beqz	a5,aa8 <_ZNK14KeyboardDevice5KeyUpEj+0x44>
+ aa0:	00100793          	li	a5,1
+ aa4:	0080006f          	j	aac <_ZNK14KeyboardDevice5KeyUpEj+0x48>
+ aa8:	00000793          	li	a5,0
+ aac:	00078513          	mv	a0,a5
+ ab0:	01c12403          	lw	s0,28(sp)
+ ab4:	02010113          	addi	sp,sp,32
+ ab8:	00008067          	ret
+
+00000abc <_ZN14KeyboardDevice10KeysStreamEPci>:
+ abc:	fd010113          	addi	sp,sp,-48
+ ac0:	02812623          	sw	s0,44(sp)
+ ac4:	03010413          	addi	s0,sp,48
+ ac8:	fca42e23          	sw	a0,-36(s0)
+ acc:	fcb42c23          	sw	a1,-40(s0)
+ ad0:	fcc42a23          	sw	a2,-44(s0)
+ ad4:	fd842783          	lw	a5,-40(s0)
+ ad8:	00078663          	beqz	a5,ae4 <_ZN14KeyboardDevice10KeysStreamEPci+0x28>
+ adc:	fd442783          	lw	a5,-44(s0)
+ ae0:	00f04663          	bgtz	a5,aec <_ZN14KeyboardDevice10KeysStreamEPci+0x30>
+ ae4:	00000793          	li	a5,0
+ ae8:	0a00006f          	j	b88 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ aec:	fd842783          	lw	a5,-40(s0)
+ af0:	00078023          	sb	zero,0(a5)
+ af4:	000507b7          	lui	a5,0x50
+ af8:	00878793          	addi	a5,a5,8 # 50008 <Keyboard+0x4f17c>
+ afc:	0007a783          	lw	a5,0(a5)
+ b00:	fef42623          	sw	a5,-20(s0)
+ b04:	000017b7          	lui	a5,0x1
+ b08:	e887a783          	lw	a5,-376(a5) # e88 <_ZL19keyboard_stream_seq>
+ b0c:	fec42703          	lw	a4,-20(s0)
+ b10:	00f71663          	bne	a4,a5,b1c <_ZN14KeyboardDevice10KeysStreamEPci+0x60>
+ b14:	00000793          	li	a5,0
+ b18:	0700006f          	j	b88 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ b1c:	000017b7          	lui	a5,0x1
+ b20:	fec42703          	lw	a4,-20(s0)
+ b24:	e8e7a423          	sw	a4,-376(a5) # e88 <_ZL19keyboard_stream_seq>
+ b28:	000507b7          	lui	a5,0x50
+ b2c:	00478793          	addi	a5,a5,4 # 50004 <Keyboard+0x4f178>
+ b30:	0007a783          	lw	a5,0(a5)
+ b34:	fef42423          	sw	a5,-24(s0)
+ b38:	000507b7          	lui	a5,0x50
+ b3c:	00c78793          	addi	a5,a5,12 # 5000c <Keyboard+0x4f180>
+ b40:	fec42703          	lw	a4,-20(s0)
+ b44:	00e7a023          	sw	a4,0(a5)
+ b48:	fe842783          	lw	a5,-24(s0)
+ b4c:	0ff7f793          	zext.b	a5,a5
+ b50:	00079663          	bnez	a5,b5c <_ZN14KeyboardDevice10KeysStreamEPci+0xa0>
+ b54:	00000793          	li	a5,0
+ b58:	0300006f          	j	b88 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ b5c:	fe842783          	lw	a5,-24(s0)
+ b60:	0ff7f713          	zext.b	a4,a5
+ b64:	fd842783          	lw	a5,-40(s0)
+ b68:	00e78023          	sb	a4,0(a5)
+ b6c:	fd442703          	lw	a4,-44(s0)
+ b70:	00100793          	li	a5,1
+ b74:	00e7d863          	bge	a5,a4,b84 <_ZN14KeyboardDevice10KeysStreamEPci+0xc8>
+ b78:	fd842783          	lw	a5,-40(s0)
+ b7c:	00178793          	addi	a5,a5,1
+ b80:	00078023          	sb	zero,0(a5)
+ b84:	00100793          	li	a5,1
+ b88:	00078513          	mv	a0,a5
+ b8c:	02c12403          	lw	s0,44(sp)
+ b90:	03010113          	addi	sp,sp,48
+ b94:	00008067          	ret
+
+lds/pong_test-rv32_ld.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 130101fc 232e1102 232c8102 13040104  ....#...#,......
+ 0010 93070005 2326f4fe 9307c003 2324f4fe  ....#&......#$..
+ 0020 93072000 2322f4fe 93071000 2320f4fe  .. .#"......# ..
+ 0030 93072003 232ef4fc 93072003 232cf4fc  .. .#..... .#,..
+ 0040 8327c4fe 232af4fc 832784fe 2328f4fc  .'..#*...'..#(..
+ 0050 8327c4fd 2326f4fc 832784fd 2324f4fc  .'..#&...'..#$..
+ 0060 232204fc 232004fc 832684fd 0326c4fd  #"..# ...&...&..
+ 0070 832584fe 0325c4fe ef00003e 032744fc  .%...%.....>.'D.
+ 0080 93078005 63dce72e b7170000 1385c7e8  ....c...........
+ 0090 ef001010 232204fc 93051000 b7170000  ....#"..........
+ 00a0 1385c7e8 ef00d012 93070500 63880700  ............c...
+ 00b0 8327c4fd 9387d7ff 232ef4fc 93052000  .'......#..... .
+ 00c0 b7170000 1385c7e8 ef009010 93070500  ................
+ 00d0 63880700 8327c4fd 93873700 232ef4fc  c....'....7.#...
+ 00e0 0325c4fd ef004040 232ea4fc 0327c4fe  .%....@@#....'..
+ 00f0 832744fe b307f700 2326f4fe 032784fe  .'D.....#&...'..
+ 0100 832704fe b307f700 2324f4fe 032784fe  .'......#$...'..
+ 0110 93078001 63d8e700 032784fe 9307b005  ....c....'......
+ 0120 63d8e700 832704fe b307f040 2320f4fe  c....'.....@# ..
+ 0130 0327c4fe 93074001 63c2e70c b727cc00  .'....@.c....'..
+ 0140 13850702 ef00c052 832704fc 93871700  .......R.'......
+ 0150 2320f4fc 032504fc ef000077 b7670100  # ...%.....w.g..
+ 0160 138507f9 ef004079 93070005 2326f4fe  ......@y....#&..
+ 0170 9307c003 2324f4fe 93072000 2322f4fe  ....#$.... .#"..
+ 0180 93071000 2320f4fe 93072003 232ef4fc  ....# .... .#...
+ 0190 93072003 232cf4fc 8327c4fe 232af4fc  .. .#,...'..#*..
+ 01a0 832784fe 2328f4fc 8327c4fd 2326f4fc  .'..#(...'..#&..
+ 01b0 832784fd 2324f4fc 232204fc 13050000  .'..#$..#"......
+ 01c0 ef00004b 832684fd 0326c4fd 832584fe  ...K.&...&...%..
+ 01d0 0325c4fe ef004028 832704fc 93871700  .%....@(.'......
+ 01e0 2320f4fc 032504fc ef00006e b7370000  # ...%.....n.7..
+ 01f0 138507ee ef004070 6f000004 0327c4fe  ......@po....'..
+ 0200 93070002 63cae702 832744fe 63d60702  ....c....'D.c...
+ 0210 832784fe 93874700 0327c4fd 63cee700  .'....G..'..c...
+ 0220 8327c4fd 93874701 032784fe 63c6e700  .'....G..'..c...
+ 0230 93072000 2322f4fe 0327c4fe 9307b007  .. .#"...'......
+ 0240 63d0e704 832744fe 635cf002 832784fe  c....'D.c\...'..
+ 0250 93874700 032784fd 63c0e702 832784fd  ..G..'..c....'..
+ 0260 93874701 032784fe 63c8e700 9307e0ff  ..G..'..c.......
+ 0270 2322f4fe 6f00c000 9307e0ff 2322f4fe  #"..o.......#"..
+ 0280 832784fe 938767ff 13850700 ef00c025  .'....g........%
+ 0290 232ca4fc 93074000 13074000 832684fe  #,....@...@..&..
+ 02a0 0326c4fe 832504fd 032544fd ef000046  .&...%...%D....F
+ 02b0 93074001 13074000 8326c4fd 1306a001  ..@...@..&......
+ 02c0 8325c4fc 1305a001 ef004044 93074001  .%........@D..@.
+ 02d0 13074000 832684fd 13062008 832584fc  ..@..&.... ..%..
+ 02e0 13052008 ef008042 ef00c00a ef000011  .. ....B........
+ 02f0 b7f7e800 1387878e 93064001 13064000  ..........@...@.
+ 0300 8325c4fd 1305a001 ef00402a b7f7e800  .%........@*....
+ 0310 1387878e 93064001 13064000 832584fd  ......@...@..%..
+ 0320 13052008 ef008028 b7d7ff00 138707c3  .. ....(........
+ 0330 93064000 13064000 832584fe 0325c4fe  ..@...@..%...%..
+ 0340 ef00c026 8327c4fe 232af4fc 832784fe  ...&.'..#*...'..
+ 0350 2328f4fc 8327c4fd 2326f4fc 832784fd  #(...'..#&...'..
+ 0360 2324f4fc 832704fc 93871700 2320f4fc  #$...'......# ..
+ 0370 032504fc ef004055 6f000001 832744fc  .%....@Uo....'D.
+ 0380 93871700 2322f4fc 1305004b ef00c056  ....#".....K...V
+ 0390 6ff0dfce 130101fe 232e1100 232c8100  o.......#...#,..
+ 03a0 13040102 93078001 2326f4fe 6f00c002  ........#&..o...
+ 03b0 b7676000 13870706 93064000 13062000  .g`.......@... .
+ 03c0 8325c4fe 1305f004 ef00401e 8327c4fe  .%........@..'..
+ 03d0 93878700 2326f4fe 0327c4fe 9307f005  ....#&...'......
+ 03e0 e3d8e7fc 13000000 13000000 8320c101  ............. ..
+ 03f0 03248101 13010102 67800000 130101ff  .$......g.......
+ 0400 23261100 23248100 13040101 b7474000  #&..#$.......G@.
+ 0410 13870704 93062000 13068007 93054001  ...... .......@.
+ 0420 13054001 ef008018 b7474000 13870704  ..@......G@.....
+ 0430 93062000 13068007 93052006 13054001  .. ....... ...@.
+ 0440 ef00c016 13000000 8320c100 03248100  ......... ...$..
+ 0450 13010101 67800000 130101fe 232e1100  ....g.......#...
+ 0460 232c8100 13040102 2326a4fe 2324b4fe  #,......#&..#$..
+ 0470 2322c4fe 2320d4fe eff05ff8 eff09ff1  #"..# ...._.....
+ 0480 b7f7e800 1387878e 93064001 13064000  ..........@...@.
+ 0490 832544fe 1305a001 ef004011 b7f7e800  .%D.......@.....
+ 04a0 1387878e 93064001 13064000 832504fe  ......@...@..%..
+ 04b0 13052008 ef00800f b7d7ff00 138707c3  .. .............
+ 04c0 93064000 13064000 832584fe 0325c4fe  ..@...@..%...%..
+ 04d0 ef00c00d 13000000 8320c101 03248101  ......... ...$..
+ 04e0 13010102 67800000 130101fe 232e8100  ....g.......#...
+ 04f0 13040102 2326a4fe 0327c4fe 93077001  ....#&...'....p.
+ 0500 63c6e700 93078001 6f00c001 0327c4fe  c.......o....'..
+ 0510 9307c004 63d6e700 9307c004 6f008000  ....c.......o...
+ 0520 8327c4fe 13850700 0324c101 13010102  .'.......$......
+ 0530 67800000 130101fe 232e8100 13040102  g.......#.......
+ 0540 2326a4fe 2324b4fe 0327c4fe 832784fe  #&..#$...'...'..
+ 0550 63d6e700 8327c4fe 6f008000 832784fe  c....'..o....'..
+ 0560 13850700 0324c101 13010102 67800000  .....$......g...
+ 0570 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 0580 2324b4fe 0327c4fe 832784fe 6356f700  #$...'...'..cV..
+ 0590 8327c4fe 6f008000 832784fe 13850700  .'..o....'......
+ 05a0 0324c101 13010102 67800000 130101fc  .$......g.......
+ 05b0 232e8102 13040104 232ea4fc 232cb4fc  #.......#...#,..
+ 05c0 232ac4fc 2328d4fc 2326e4fc 232604fe  #*..#(..#&..#&..
+ 05d0 6f000008 032784fd 8327c4fe b307f700  o....'...'......
+ 05e0 2322f4fe 832744fe 13977700 832744fe  #"...'D...w..'D.
+ 05f0 93975700 b307f700 2320f4fe 232404fe  ..W.....# ..#$..
+ 0600 6f008003 032704fe 8327c4fd 3307f700  o....'...'..3...
+ 0610 832784fe b307f700 13972700 b7070200  .'........'.....
+ 0620 b307f700 0327c4fc 23a0e700 832784fe  .....'..#....'..
+ 0630 93871700 2324f4fe 032784fe 832744fd  ....#$...'...'D.
+ 0640 e342f7fc 8327c4fe 93871700 2326f4fe  .B...'......#&..
+ 0650 0327c4fe 832704fd e34ef7f6 13000000  .'...'...N......
+ 0660 13000000 0324c103 13010104 67800000  .....$......g...
+ 0670 130101fd 23268102 13040103 232ea4fc  ....#&......#...
+ 0680 232604fe 6f008006 8327c4fe 13977700  #&..o....'....w.
+ 0690 8327c4fe 93975700 b307f700 2322f4fe  .'....W.....#"..
+ 06a0 232404fe 6f000003 032744fe 832784fe  #$..o....'D..'..
+ 06b0 b307f700 13972700 b7070200 b307f700  ......'.........
+ 06c0 0327c4fd 23a0e700 832784fe 93871700  .'..#....'......
+ 06d0 2324f4fe 032784fe 9307f009 e3d6e7fc  #$...'..........
+ 06e0 8327c4fe 93871700 2326f4fe 0327c4fe  .'......#&...'..
+ 06f0 93077007 e3dae7f8 13000000 13000000  ..p.............
+ 0700 0324c102 13010103 67800000 130101fb  .$......g.......
+ 0710 23261104 23248104 13040105 2326a4fc  #&..#$......#&..
+ 0720 2324b4fc 2322c4fc 2320d4fc 232ee4fa  #$..#"..# ..#...
+ 0730 232cf4fa 0327c4fc 8327c4fb b307f700  #,...'...'......
+ 0740 2326f4fe 032784fc 832784fb b307f700  #&...'...'......
+ 0750 2324f4fe 032744fc 8327c4fb b307f700  #$...'D..'......
+ 0760 2322f4fe 032704fc 832784fb b307f700  #"...'...'......
+ 0770 2320f4fe 832544fc 0325c4fc eff09fdb  # ...%D..%......
+ 0780 232ea4fc 832504fc 032584fc eff09fda  #....%...%......
+ 0790 232ca4fc 832544fe 0325c4fe eff05fdd  #,...%D..%...._.
+ 07a0 232aa4fc 832504fe 032584fe eff05fdc  #*...%...%...._.
+ 07b0 2328a4fc 0327c4fd 832744fd 6358f700  #(...'...'D.cX..
+ 07c0 032784fd 832704fd 6340f702 13070000  .'...'..c@......
+ 07d0 832684fb 0326c4fb 832584fc 0325c4fc  .&...&...%...%..
+ 07e0 eff0dfdc 6f00400d 032784fc 832784fd  ....o.@..'...'..
+ 07f0 6354f702 032784fd 832784fc b307f740  cT...'...'.....@
+ 0800 13070000 93860700 0326c4fb 832584fc  .........&...%..
+ 0810 0325c4fc eff09fd9 032704fd 832784fe  .%.......'...'..
+ 0820 6354f702 032784fe 832704fd b307f740  cT...'...'.....@
+ 0830 13070000 93860700 0326c4fb 832504fd  .........&...%..
+ 0840 0325c4fc eff09fd6 0327c4fc 8327c4fd  .%.......'...'..
+ 0850 6358f702 0327c4fd 8327c4fc 3306f740  cX...'...'..3..@
+ 0860 032704fd 832784fd b307f740 13070000  .'...'.....@....
+ 0870 93860700 832584fd 0325c4fc eff01fd3  .....%...%......
+ 0880 032744fd 8327c4fe 6358f702 0327c4fe  .'D..'..cX...'..
+ 0890 832744fd 3306f740 032704fd 832784fd  .'D.3..@.'...'..
+ 08a0 b307f740 13070000 93860700 832584fd  ...@.........%..
+ 08b0 032544fd eff09fcf 8320c104 03248104  .%D...... ...$..
+ 08c0 13010105 67800000 130101fe 232e8100  ....g.......#...
+ 08d0 13040102 2326a4fe b7070400 93874701  ....#&........G.
+ 08e0 0327c4fe 23a0e700 13000000 0324c101  .'..#........$..
+ 08f0 13010102 67800000 130101fd 23268102  ....g.......#&..
+ 0900 13040103 232ea4fc 232604fe 6f000001  ....#...#&..o...
+ 0910 8327c4fe 93871700 2326f4fe 8327c4fe  .'......#&...'..
+ 0920 0327c4fd b3a7e700 93f7f70f e39207fe  .'..............
+ 0930 13000000 13000000 0324c102 13010103  .........$......
+ 0940 67800000 130101fe 232e8100 13040102  g.......#.......
+ 0950 2326a4fe 2324b4fe 832784fe 13850700  #&..#$...'......
+ 0960 0324c101 13010102 67800000 130101fe  .$......g.......
+ 0970 232e8100 13040102 2326a4fe 93071000  #.......#&......
+ 0980 13850700 0324c101 13010102 67800000  .....$......g...
+ 0990 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 09a0 b7170000 03a707e8 b7170000 23a2e7e8  ............#...
+ 09b0 b7070500 03a70700 b7170000 23a0e7e8  ............#...
+ 09c0 13000000 0324c101 13010102 67800000  .....$......g...
+ 09d0 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 09e0 2324b4fe b7170000 03a707e8 832784fe  #$...........'..
+ 09f0 b377f700 b337f000 93f7f70f 13850700  .w...7..........
+ 0a00 0324c101 13010102 67800000 130101fe  .$......g.......
+ 0a10 232e8100 13040102 2326a4fe 2324b4fe  #.......#&..#$..
+ 0a20 b7170000 03a707e8 832784fe b377f700  .........'...w..
+ 0a30 63800702 b7170000 03a747e8 832784fe  c.........G..'..
+ 0a40 b377f700 63960700 93071000 6f008000  .w..c.......o...
+ 0a50 93070000 13850700 0324c101 13010102  .........$......
+ 0a60 67800000 130101fe 232e8100 13040102  g.......#.......
+ 0a70 2326a4fe 2324b4fe b7170000 03a707e8  #&..#$..........
+ 0a80 832784fe b377f700 63900702 b7170000  .'...w..c.......
+ 0a90 03a747e8 832784fe b377f700 63860700  ..G..'...w..c...
+ 0aa0 93071000 6f008000 93070000 13850700  ....o...........
+ 0ab0 0324c101 13010102 67800000 130101fd  .$......g.......
+ 0ac0 23268102 13040103 232ea4fc 232cb4fc  #&......#...#,..
+ 0ad0 232ac4fc 832784fd 63860700 832744fd  #*...'..c....'D.
+ 0ae0 6346f000 93070000 6f00000a 832784fd  cF......o....'..
+ 0af0 23800700 b7070500 93878700 83a70700  #...............
+ 0b00 2326f4fe b7170000 83a787e8 0327c4fe  #&...........'..
+ 0b10 6316f700 93070000 6f000007 b7170000  c.......o.......
+ 0b20 0327c4fe 23a4e7e8 b7070500 93874700  .'..#.........G.
+ 0b30 83a70700 2324f4fe b7070500 9387c700  ....#$..........
+ 0b40 0327c4fe 23a0e700 832784fe 93f7f70f  .'..#....'......
+ 0b50 63960700 93070000 6f000003 832784fe  c.......o....'..
+ 0b60 13f7f70f 832784fd 2380e700 032744fd  .....'..#....'D.
+ 0b70 93071000 63d8e700 832784fd 93871700  ....c....'......
+ 0b80 23800700 93071000 13850700 0324c102  #............$..
+ 0b90 13010103 67800000                    ....g...        
+Contents of section .rodata:
+ 0b98 00000200 14000400 00000500 04000500  ................
+ 0ba8 08000500 0c000500                    ........        

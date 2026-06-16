@@ -14,6 +14,9 @@ Pong game rendering notes, see `GPU_RENDERING.md`.
 | `0x00020000` - `0x00032BFF` | 160x120 framebuffer, one 32-bit word per pixel |
 | `0x00040000` - `0x000400FF` | GPU registers |
 
+Keyboard and typed input are not part of `gpu.v`; they live in the dedicated
+`io.v` device at `0x00050000`. See `io.md`.
+
 Framebuffer words use `0x00RRGGBB`. The first implementation supports word
 stores for pixels.
 

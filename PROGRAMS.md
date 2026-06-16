@@ -32,6 +32,11 @@ python3 parse_rom.py codes/instr/<name>_instr.txt
 python3 ppm_live_viewer.py screen.ppm
 python3 parse_rom.py codes/instr/pong_live_instr.txt
 ./run.sh cpu tb_live_screen.cpp
+
+# Player-controlled Pong
+./codes/build_riscv.sh pong_test
+python3 parse_rom.py codes/instr/pong_test_instr.txt
+./run.sh cpu tb_pong_test.cpp
 ```
 
 ---
@@ -55,7 +60,8 @@ python3 parse_rom.py codes/instr/pong_live_instr.txt
 | `gpu_demo` | 57 | 0 | MMIO framebuffer writes to `gpu.v`, virtual 800x480 scanout |
 | `pong` | 239 | 0 | No-input Pong scene, GPU framebuffer rectangles |
 | `pong_live` | 502 | — | No-input Pong animation loop using `Screen_SDK`; stop simulator with Ctrl+C |
-| `calc` | 259 | — | I/O via ecall (tb_io.cpp), strings, print_int, read_num |
+| `pong_test` | ~748 | — | Player-controlled Pong using `IO_SDK`; missed player ball flashes red and resets |
+| `calc` | ~449 | — | Keyboard input via `IO_SDK`, output via ecall, strings, print_int, read_num |
 
 Run the regression suite:
 
@@ -135,7 +141,8 @@ takes priority).
 |------|---------|
 | `test.sh <name> <a0>` | One-command test: parse ROM → Verilator → PASS/FAIL |
 | `tb_program.cpp` | Testbench for programs that exit via `ecall a7=93`; checks `EXPECTED_A0` |
-| `tb_io.cpp` | Testbench for interactive programs; dispatches ecall to terminal I/O |
+| `tb_io.cpp` | Testbench for interactive programs; feeds `io.v` keyboard input and handles ecall output |
+| `tb_pong_test.cpp` | Live screen testbench for player-controlled Pong; uses nonblocking host keyboard input |
 | `tb_debug.cpp` | Cycle-by-cycle tracer; shows decoded assembly and register diffs |
 | `parse_rom.py` | Converts `_instr.txt` → `rom_dump.v`; handles -d and -s formats |
 | `codes/build_riscv.sh <n>` | Compile C++ → ELF + generate `_instr.txt` |
@@ -148,8 +155,25 @@ takes priority).
 |----|--------|
 | 1 | Print signed integer in a0 |
 | 11 | Print character (a0 & 0xFF) |
-| 12 | Read one character → a0 (injected via `dbg_rf_we`) |
+| 12 | Legacy read one character → a0 (interactive programs should prefer `IO_SDK`) |
 | 93 | Exit (break simulation loop) |
+
+### `IO_SDK` keyboard input
+
+Programs can include `../../IO_SDK.h` to read keyboard input from `io.v`.
+`codes/build_riscv.sh` automatically links `../IO_SDK.cpp`.
+
+`io.v` lives at `0x00050000`:
+
+| Address | Meaning |
+|---------|---------|
+| `0x00050000` | Key-state bitmask (`IO_KEY_W`, `IO_KEY_S`, `IO_KEY_Q`) |
+| `0x00050004` | Current typed character |
+| `0x00050008` | Typed-character sequence |
+| `0x0005000C` | Typed-character acknowledge |
+
+`Keyboard.KeysStream(...)` uses the sequence/acknowledge pair so fast typed
+input is queued instead of overwritten.
 
 ---
 
@@ -178,6 +202,8 @@ python3 parse_rom.py codes/instr/calc_instr.txt
 ```
 
 Key implementation constraints (no RV32M):
+- **Input**: uses `IO_SDK` `Keyboard.KeysStream(...)`; `tb_io.cpp` feeds `io.v`
+  from a nonblocking host input thread.
 - **`read_num`**: parses digits with `(num<<3)+(num<<1)+digit` (avoids `mul`)
 - **`print_int`**: uses a stack-local powers-of-10 table + repeated subtraction (avoids `div`)
 - String prompts live in `.rodata` and are loaded at reset along with `.text`

@@ -9,25 +9,25 @@ Disassembly of section .text:
    4:	00112e23          	sw	ra,28(sp)
    8:	00812c23          	sw	s0,24(sp)
    c:	02010413          	addi	s0,sp,32
-  10:	3d000513          	li	a0,976
+  10:	6b800513          	li	a0,1720
   14:	0c0000ef          	jal	d4 <_ZL9print_strPKc>
   18:	fec40793          	addi	a5,s0,-20
   1c:	00078513          	mv	a0,a5
-  20:	290000ef          	jal	2b0 <_ZL8read_numPi>
+  20:	334000ef          	jal	354 <_ZL8read_numPi>
   24:	00050793          	mv	a5,a0
   28:	01f7d793          	srli	a5,a5,0x1f
   2c:	0ff7f793          	zext.b	a5,a5
   30:	04079863          	bnez	a5,80 <_start+0x80>
-  34:	3e800513          	li	a0,1000
+  34:	6d000513          	li	a0,1744
   38:	09c000ef          	jal	d4 <_ZL9print_strPKc>
   3c:	fe840793          	addi	a5,s0,-24
   40:	00078513          	mv	a0,a5
-  44:	26c000ef          	jal	2b0 <_ZL8read_numPi>
+  44:	310000ef          	jal	354 <_ZL8read_numPi>
   48:	00050793          	mv	a5,a0
   4c:	01f7d793          	srli	a5,a5,0x1f
   50:	0ff7f793          	zext.b	a5,a5
   54:	02079a63          	bnez	a5,88 <_start+0x88>
-  58:	40000513          	li	a0,1024
+  58:	6e800513          	li	a0,1768
   5c:	078000ef          	jal	d4 <_ZL9print_strPKc>
   60:	fec42703          	lw	a4,-20(s0)
   64:	fe842783          	lw	a5,-24(s0)
@@ -40,7 +40,7 @@ Disassembly of section .text:
   80:	00000013          	nop
   84:	0080006f          	j	8c <_start+0x8c>
   88:	00000013          	nop
-  8c:	40400513          	li	a0,1028
+  8c:	6ec00513          	li	a0,1772
   90:	044000ef          	jal	d4 <_ZL9print_strPKc>
   94:	00000513          	li	a0,0
   98:	05d00893          	li	a7,93
@@ -103,22 +103,22 @@ Disassembly of section .text:
  164:	40f007b3          	neg	a5,a5
  168:	faf42623          	sw	a5,-84(s0)
  16c:	3b9ad7b7          	lui	a5,0x3b9ad
- 170:	a0078793          	addi	a5,a5,-1536 # 3b9aca00 <_ZL8read_numPi+0x3b9ac750>
+ 170:	a0078793          	addi	a5,a5,-1536 # 3b9aca00 <Keyboard+0x3b9ac118>
  174:	faf42e23          	sw	a5,-68(s0)
  178:	05f5e7b7          	lui	a5,0x5f5e
- 17c:	10078793          	addi	a5,a5,256 # 5f5e100 <_ZL8read_numPi+0x5f5de50>
+ 17c:	10078793          	addi	a5,a5,256 # 5f5e100 <Keyboard+0x5f5d818>
  180:	fcf42023          	sw	a5,-64(s0)
  184:	009897b7          	lui	a5,0x989
- 188:	68078793          	addi	a5,a5,1664 # 989680 <_ZL8read_numPi+0x9893d0>
+ 188:	68078793          	addi	a5,a5,1664 # 989680 <Keyboard+0x988d98>
  18c:	fcf42223          	sw	a5,-60(s0)
  190:	000f47b7          	lui	a5,0xf4
- 194:	24078793          	addi	a5,a5,576 # f4240 <_ZL8read_numPi+0xf3f90>
+ 194:	24078793          	addi	a5,a5,576 # f4240 <Keyboard+0xf3958>
  198:	fcf42423          	sw	a5,-56(s0)
  19c:	000187b7          	lui	a5,0x18
- 1a0:	6a078793          	addi	a5,a5,1696 # 186a0 <_ZL8read_numPi+0x183f0>
+ 1a0:	6a078793          	addi	a5,a5,1696 # 186a0 <Keyboard+0x17db8>
  1a4:	fcf42623          	sw	a5,-52(s0)
  1a8:	000027b7          	lui	a5,0x2
- 1ac:	71078793          	addi	a5,a5,1808 # 2710 <_ZL8read_numPi+0x2460>
+ 1ac:	71078793          	addi	a5,a5,1808 # 2710 <Keyboard+0x1e28>
  1b0:	fcf42823          	sw	a5,-48(s0)
  1b4:	3e800793          	li	a5,1000
  1b8:	fcf42a23          	sw	a5,-44(s0)
@@ -175,103 +175,301 @@ Disassembly of section .text:
  284:	00008067          	ret
 
 00000288 <_ZL5getchv>:
- 288:	ff010113          	addi	sp,sp,-16
- 28c:	00812623          	sw	s0,12(sp)
- 290:	01010413          	addi	s0,sp,16
- 294:	00c00893          	li	a7,12
- 298:	00000073          	ecall
- 29c:	00050793          	mv	a5,a0
- 2a0:	00078513          	mv	a0,a5
- 2a4:	00c12403          	lw	s0,12(sp)
- 2a8:	01010113          	addi	sp,sp,16
- 2ac:	00008067          	ret
+ 288:	fe010113          	addi	sp,sp,-32
+ 28c:	00112e23          	sw	ra,28(sp)
+ 290:	00812c23          	sw	s0,24(sp)
+ 294:	02010413          	addi	s0,sp,32
+ 298:	000017b7          	lui	a5,0x1
+ 29c:	8e878513          	addi	a0,a5,-1816 # 8e8 <Keyboard>
+ 2a0:	210000ef          	jal	4b0 <_ZN14KeyboardDevice6UpdateEv>
+ 2a4:	fe840793          	addi	a5,s0,-24
+ 2a8:	00200613          	li	a2,2
+ 2ac:	00078593          	mv	a1,a5
+ 2b0:	000017b7          	lui	a5,0x1
+ 2b4:	8e878513          	addi	a0,a5,-1816 # 8e8 <Keyboard>
+ 2b8:	324000ef          	jal	5dc <_ZN14KeyboardDevice10KeysStreamEPci>
+ 2bc:	00050793          	mv	a5,a0
+ 2c0:	00f027b3          	sgtz	a5,a5
+ 2c4:	0ff7f793          	zext.b	a5,a5
+ 2c8:	fc0788e3          	beqz	a5,298 <_ZL5getchv+0x10>
+ 2cc:	fe844783          	lbu	a5,-24(s0)
+ 2d0:	fef42623          	sw	a5,-20(s0)
+ 2d4:	fec42703          	lw	a4,-20(s0)
+ 2d8:	00d00793          	li	a5,13
+ 2dc:	00f71663          	bne	a4,a5,2e8 <_ZL5getchv+0x60>
+ 2e0:	00a00793          	li	a5,10
+ 2e4:	fef42623          	sw	a5,-20(s0)
+ 2e8:	fec42783          	lw	a5,-20(s0)
+ 2ec:	0ff7f793          	zext.b	a5,a5
+ 2f0:	00078513          	mv	a0,a5
+ 2f4:	dadff0ef          	jal	a0 <_ZL5putchc>
+ 2f8:	fec42783          	lw	a5,-20(s0)
+ 2fc:	00078513          	mv	a0,a5
+ 300:	01c12083          	lw	ra,28(sp)
+ 304:	01812403          	lw	s0,24(sp)
+ 308:	02010113          	addi	sp,sp,32
+ 30c:	00008067          	ret
 
-000002b0 <_ZL8read_numPi>:
- 2b0:	fd010113          	addi	sp,sp,-48
- 2b4:	02112623          	sw	ra,44(sp)
- 2b8:	02812423          	sw	s0,40(sp)
- 2bc:	03010413          	addi	s0,sp,48
- 2c0:	fca42e23          	sw	a0,-36(s0)
- 2c4:	fc5ff0ef          	jal	288 <_ZL5getchv>
- 2c8:	fea42623          	sw	a0,-20(s0)
- 2cc:	fec42703          	lw	a4,-20(s0)
- 2d0:	07100793          	li	a5,113
- 2d4:	00f70e63          	beq	a4,a5,2f0 <_ZL8read_numPi+0x40>
- 2d8:	fec42703          	lw	a4,-20(s0)
- 2dc:	05100793          	li	a5,81
- 2e0:	02f71663          	bne	a4,a5,30c <_ZL8read_numPi+0x5c>
- 2e4:	00c0006f          	j	2f0 <_ZL8read_numPi+0x40>
- 2e8:	fa1ff0ef          	jal	288 <_ZL5getchv>
- 2ec:	fea42623          	sw	a0,-20(s0)
- 2f0:	fec42703          	lw	a4,-20(s0)
- 2f4:	00a00793          	li	a5,10
- 2f8:	00f70663          	beq	a4,a5,304 <_ZL8read_numPi+0x54>
- 2fc:	fec42783          	lw	a5,-20(s0)
- 300:	fef044e3          	bgtz	a5,2e8 <_ZL8read_numPi+0x38>
- 304:	fff00793          	li	a5,-1
- 308:	0b40006f          	j	3bc <_ZL8read_numPi+0x10c>
- 30c:	fe042423          	sw	zero,-24(s0)
- 310:	fec42703          	lw	a4,-20(s0)
- 314:	02d00793          	li	a5,45
- 318:	00f71a63          	bne	a4,a5,32c <_ZL8read_numPi+0x7c>
- 31c:	00100793          	li	a5,1
- 320:	fef42423          	sw	a5,-24(s0)
- 324:	f65ff0ef          	jal	288 <_ZL5getchv>
- 328:	fea42623          	sw	a0,-20(s0)
- 32c:	fe042223          	sw	zero,-28(s0)
- 330:	0300006f          	j	360 <_ZL8read_numPi+0xb0>
- 334:	fe442783          	lw	a5,-28(s0)
- 338:	00379713          	slli	a4,a5,0x3
- 33c:	fe442783          	lw	a5,-28(s0)
- 340:	00179793          	slli	a5,a5,0x1
- 344:	00f70733          	add	a4,a4,a5
- 348:	fec42783          	lw	a5,-20(s0)
- 34c:	fd078793          	addi	a5,a5,-48
- 350:	00f707b3          	add	a5,a4,a5
- 354:	fef42223          	sw	a5,-28(s0)
- 358:	f31ff0ef          	jal	288 <_ZL5getchv>
- 35c:	fea42623          	sw	a0,-20(s0)
- 360:	fec42703          	lw	a4,-20(s0)
- 364:	02f00793          	li	a5,47
- 368:	00e7de63          	bge	a5,a4,384 <_ZL8read_numPi+0xd4>
- 36c:	fec42703          	lw	a4,-20(s0)
- 370:	03900793          	li	a5,57
- 374:	fce7d0e3          	bge	a5,a4,334 <_ZL8read_numPi+0x84>
- 378:	00c0006f          	j	384 <_ZL8read_numPi+0xd4>
- 37c:	f0dff0ef          	jal	288 <_ZL5getchv>
- 380:	fea42623          	sw	a0,-20(s0)
- 384:	fec42703          	lw	a4,-20(s0)
- 388:	00a00793          	li	a5,10
- 38c:	00f70663          	beq	a4,a5,398 <_ZL8read_numPi+0xe8>
- 390:	fec42783          	lw	a5,-20(s0)
- 394:	fef044e3          	bgtz	a5,37c <_ZL8read_numPi+0xcc>
- 398:	fe842783          	lw	a5,-24(s0)
- 39c:	00078863          	beqz	a5,3ac <_ZL8read_numPi+0xfc>
- 3a0:	fe442783          	lw	a5,-28(s0)
- 3a4:	40f007b3          	neg	a5,a5
- 3a8:	0080006f          	j	3b0 <_ZL8read_numPi+0x100>
- 3ac:	fe442783          	lw	a5,-28(s0)
- 3b0:	fdc42703          	lw	a4,-36(s0)
- 3b4:	00f72023          	sw	a5,0(a4)
- 3b8:	00000793          	li	a5,0
- 3bc:	00078513          	mv	a0,a5
- 3c0:	02c12083          	lw	ra,44(sp)
- 3c4:	02812403          	lw	s0,40(sp)
- 3c8:	03010113          	addi	sp,sp,48
- 3cc:	00008067          	ret
+00000310 <_ZL11is_line_endi>:
+ 310:	fe010113          	addi	sp,sp,-32
+ 314:	00812e23          	sw	s0,28(sp)
+ 318:	02010413          	addi	s0,sp,32
+ 31c:	fea42623          	sw	a0,-20(s0)
+ 320:	fec42703          	lw	a4,-20(s0)
+ 324:	00a00793          	li	a5,10
+ 328:	00f70863          	beq	a4,a5,338 <_ZL11is_line_endi+0x28>
+ 32c:	fec42703          	lw	a4,-20(s0)
+ 330:	00d00793          	li	a5,13
+ 334:	00f71663          	bne	a4,a5,340 <_ZL11is_line_endi+0x30>
+ 338:	00100793          	li	a5,1
+ 33c:	0080006f          	j	344 <_ZL11is_line_endi+0x34>
+ 340:	00000793          	li	a5,0
+ 344:	00078513          	mv	a0,a5
+ 348:	01c12403          	lw	s0,28(sp)
+ 34c:	02010113          	addi	sp,sp,32
+ 350:	00008067          	ret
+
+00000354 <_ZL8read_numPi>:
+ 354:	fd010113          	addi	sp,sp,-48
+ 358:	02112623          	sw	ra,44(sp)
+ 35c:	02812423          	sw	s0,40(sp)
+ 360:	03010413          	addi	s0,sp,48
+ 364:	fca42e23          	sw	a0,-36(s0)
+ 368:	f21ff0ef          	jal	288 <_ZL5getchv>
+ 36c:	00050793          	mv	a5,a0
+ 370:	fef42623          	sw	a5,-20(s0)
+ 374:	fec42703          	lw	a4,-20(s0)
+ 378:	07100793          	li	a5,113
+ 37c:	02f70063          	beq	a4,a5,39c <_ZL8read_numPi+0x48>
+ 380:	fec42703          	lw	a4,-20(s0)
+ 384:	05100793          	li	a5,81
+ 388:	04f71263          	bne	a4,a5,3cc <_ZL8read_numPi+0x78>
+ 38c:	0100006f          	j	39c <_ZL8read_numPi+0x48>
+ 390:	ef9ff0ef          	jal	288 <_ZL5getchv>
+ 394:	00050793          	mv	a5,a0
+ 398:	fef42623          	sw	a5,-20(s0)
+ 39c:	fec42503          	lw	a0,-20(s0)
+ 3a0:	f71ff0ef          	jal	310 <_ZL11is_line_endi>
+ 3a4:	00050793          	mv	a5,a0
+ 3a8:	00079a63          	bnez	a5,3bc <_ZL8read_numPi+0x68>
+ 3ac:	fec42783          	lw	a5,-20(s0)
+ 3b0:	00f05663          	blez	a5,3bc <_ZL8read_numPi+0x68>
+ 3b4:	00100793          	li	a5,1
+ 3b8:	0080006f          	j	3c0 <_ZL8read_numPi+0x6c>
+ 3bc:	00000793          	li	a5,0
+ 3c0:	fc0798e3          	bnez	a5,390 <_ZL8read_numPi+0x3c>
+ 3c4:	fff00793          	li	a5,-1
+ 3c8:	0d40006f          	j	49c <_ZL8read_numPi+0x148>
+ 3cc:	fe042423          	sw	zero,-24(s0)
+ 3d0:	fec42703          	lw	a4,-20(s0)
+ 3d4:	02d00793          	li	a5,45
+ 3d8:	00f71c63          	bne	a4,a5,3f0 <_ZL8read_numPi+0x9c>
+ 3dc:	00100793          	li	a5,1
+ 3e0:	fef42423          	sw	a5,-24(s0)
+ 3e4:	ea5ff0ef          	jal	288 <_ZL5getchv>
+ 3e8:	00050793          	mv	a5,a0
+ 3ec:	fef42623          	sw	a5,-20(s0)
+ 3f0:	fe042223          	sw	zero,-28(s0)
+ 3f4:	0340006f          	j	428 <_ZL8read_numPi+0xd4>
+ 3f8:	fe442783          	lw	a5,-28(s0)
+ 3fc:	00379713          	slli	a4,a5,0x3
+ 400:	fe442783          	lw	a5,-28(s0)
+ 404:	00179793          	slli	a5,a5,0x1
+ 408:	00f70733          	add	a4,a4,a5
+ 40c:	fec42783          	lw	a5,-20(s0)
+ 410:	fd078793          	addi	a5,a5,-48
+ 414:	00f707b3          	add	a5,a4,a5
+ 418:	fef42223          	sw	a5,-28(s0)
+ 41c:	e6dff0ef          	jal	288 <_ZL5getchv>
+ 420:	00050793          	mv	a5,a0
+ 424:	fef42623          	sw	a5,-20(s0)
+ 428:	fec42703          	lw	a4,-20(s0)
+ 42c:	02f00793          	li	a5,47
+ 430:	02e7d063          	bge	a5,a4,450 <_ZL8read_numPi+0xfc>
+ 434:	fec42703          	lw	a4,-20(s0)
+ 438:	03900793          	li	a5,57
+ 43c:	fae7dee3          	bge	a5,a4,3f8 <_ZL8read_numPi+0xa4>
+ 440:	0100006f          	j	450 <_ZL8read_numPi+0xfc>
+ 444:	e45ff0ef          	jal	288 <_ZL5getchv>
+ 448:	00050793          	mv	a5,a0
+ 44c:	fef42623          	sw	a5,-20(s0)
+ 450:	fec42503          	lw	a0,-20(s0)
+ 454:	ebdff0ef          	jal	310 <_ZL11is_line_endi>
+ 458:	00050793          	mv	a5,a0
+ 45c:	00079a63          	bnez	a5,470 <_ZL8read_numPi+0x11c>
+ 460:	fec42783          	lw	a5,-20(s0)
+ 464:	00f05663          	blez	a5,470 <_ZL8read_numPi+0x11c>
+ 468:	00100793          	li	a5,1
+ 46c:	0080006f          	j	474 <_ZL8read_numPi+0x120>
+ 470:	00000793          	li	a5,0
+ 474:	fc0798e3          	bnez	a5,444 <_ZL8read_numPi+0xf0>
+ 478:	fe842783          	lw	a5,-24(s0)
+ 47c:	00078863          	beqz	a5,48c <_ZL8read_numPi+0x138>
+ 480:	fe442783          	lw	a5,-28(s0)
+ 484:	40f007b3          	neg	a5,a5
+ 488:	0080006f          	j	490 <_ZL8read_numPi+0x13c>
+ 48c:	fe442783          	lw	a5,-28(s0)
+ 490:	fdc42703          	lw	a4,-36(s0)
+ 494:	00f72023          	sw	a5,0(a4)
+ 498:	00000793          	li	a5,0
+ 49c:	00078513          	mv	a0,a5
+ 4a0:	02c12083          	lw	ra,44(sp)
+ 4a4:	02812403          	lw	s0,40(sp)
+ 4a8:	03010113          	addi	sp,sp,48
+ 4ac:	00008067          	ret
+
+000004b0 <_ZN14KeyboardDevice6UpdateEv>:
+ 4b0:	fe010113          	addi	sp,sp,-32
+ 4b4:	00812e23          	sw	s0,28(sp)
+ 4b8:	02010413          	addi	s0,sp,32
+ 4bc:	fea42623          	sw	a0,-20(s0)
+ 4c0:	000017b7          	lui	a5,0x1
+ 4c4:	8dc7a703          	lw	a4,-1828(a5) # 8dc <_ZL22keyboard_current_state>
+ 4c8:	000017b7          	lui	a5,0x1
+ 4cc:	8ee7a023          	sw	a4,-1824(a5) # 8e0 <_ZL23keyboard_previous_state>
+ 4d0:	000507b7          	lui	a5,0x50
+ 4d4:	0007a703          	lw	a4,0(a5) # 50000 <Keyboard+0x4f718>
+ 4d8:	000017b7          	lui	a5,0x1
+ 4dc:	8ce7ae23          	sw	a4,-1828(a5) # 8dc <_ZL22keyboard_current_state>
+ 4e0:	00000013          	nop
+ 4e4:	01c12403          	lw	s0,28(sp)
+ 4e8:	02010113          	addi	sp,sp,32
+ 4ec:	00008067          	ret
+
+000004f0 <_ZNK14KeyboardDevice10KeyPressedEj>:
+ 4f0:	fe010113          	addi	sp,sp,-32
+ 4f4:	00812e23          	sw	s0,28(sp)
+ 4f8:	02010413          	addi	s0,sp,32
+ 4fc:	fea42623          	sw	a0,-20(s0)
+ 500:	feb42423          	sw	a1,-24(s0)
+ 504:	000017b7          	lui	a5,0x1
+ 508:	8dc7a703          	lw	a4,-1828(a5) # 8dc <_ZL22keyboard_current_state>
+ 50c:	fe842783          	lw	a5,-24(s0)
+ 510:	00f777b3          	and	a5,a4,a5
+ 514:	00f037b3          	snez	a5,a5
+ 518:	0ff7f793          	zext.b	a5,a5
+ 51c:	00078513          	mv	a0,a5
+ 520:	01c12403          	lw	s0,28(sp)
+ 524:	02010113          	addi	sp,sp,32
+ 528:	00008067          	ret
+
+0000052c <_ZNK14KeyboardDevice7KeyDownEj>:
+ 52c:	fe010113          	addi	sp,sp,-32
+ 530:	00812e23          	sw	s0,28(sp)
+ 534:	02010413          	addi	s0,sp,32
+ 538:	fea42623          	sw	a0,-20(s0)
+ 53c:	feb42423          	sw	a1,-24(s0)
+ 540:	000017b7          	lui	a5,0x1
+ 544:	8dc7a703          	lw	a4,-1828(a5) # 8dc <_ZL22keyboard_current_state>
+ 548:	fe842783          	lw	a5,-24(s0)
+ 54c:	00f777b3          	and	a5,a4,a5
+ 550:	02078063          	beqz	a5,570 <_ZNK14KeyboardDevice7KeyDownEj+0x44>
+ 554:	000017b7          	lui	a5,0x1
+ 558:	8e07a703          	lw	a4,-1824(a5) # 8e0 <_ZL23keyboard_previous_state>
+ 55c:	fe842783          	lw	a5,-24(s0)
+ 560:	00f777b3          	and	a5,a4,a5
+ 564:	00079663          	bnez	a5,570 <_ZNK14KeyboardDevice7KeyDownEj+0x44>
+ 568:	00100793          	li	a5,1
+ 56c:	0080006f          	j	574 <_ZNK14KeyboardDevice7KeyDownEj+0x48>
+ 570:	00000793          	li	a5,0
+ 574:	00078513          	mv	a0,a5
+ 578:	01c12403          	lw	s0,28(sp)
+ 57c:	02010113          	addi	sp,sp,32
+ 580:	00008067          	ret
+
+00000584 <_ZNK14KeyboardDevice5KeyUpEj>:
+ 584:	fe010113          	addi	sp,sp,-32
+ 588:	00812e23          	sw	s0,28(sp)
+ 58c:	02010413          	addi	s0,sp,32
+ 590:	fea42623          	sw	a0,-20(s0)
+ 594:	feb42423          	sw	a1,-24(s0)
+ 598:	000017b7          	lui	a5,0x1
+ 59c:	8dc7a703          	lw	a4,-1828(a5) # 8dc <_ZL22keyboard_current_state>
+ 5a0:	fe842783          	lw	a5,-24(s0)
+ 5a4:	00f777b3          	and	a5,a4,a5
+ 5a8:	02079063          	bnez	a5,5c8 <_ZNK14KeyboardDevice5KeyUpEj+0x44>
+ 5ac:	000017b7          	lui	a5,0x1
+ 5b0:	8e07a703          	lw	a4,-1824(a5) # 8e0 <_ZL23keyboard_previous_state>
+ 5b4:	fe842783          	lw	a5,-24(s0)
+ 5b8:	00f777b3          	and	a5,a4,a5
+ 5bc:	00078663          	beqz	a5,5c8 <_ZNK14KeyboardDevice5KeyUpEj+0x44>
+ 5c0:	00100793          	li	a5,1
+ 5c4:	0080006f          	j	5cc <_ZNK14KeyboardDevice5KeyUpEj+0x48>
+ 5c8:	00000793          	li	a5,0
+ 5cc:	00078513          	mv	a0,a5
+ 5d0:	01c12403          	lw	s0,28(sp)
+ 5d4:	02010113          	addi	sp,sp,32
+ 5d8:	00008067          	ret
+
+000005dc <_ZN14KeyboardDevice10KeysStreamEPci>:
+ 5dc:	fd010113          	addi	sp,sp,-48
+ 5e0:	02812623          	sw	s0,44(sp)
+ 5e4:	03010413          	addi	s0,sp,48
+ 5e8:	fca42e23          	sw	a0,-36(s0)
+ 5ec:	fcb42c23          	sw	a1,-40(s0)
+ 5f0:	fcc42a23          	sw	a2,-44(s0)
+ 5f4:	fd842783          	lw	a5,-40(s0)
+ 5f8:	00078663          	beqz	a5,604 <_ZN14KeyboardDevice10KeysStreamEPci+0x28>
+ 5fc:	fd442783          	lw	a5,-44(s0)
+ 600:	00f04663          	bgtz	a5,60c <_ZN14KeyboardDevice10KeysStreamEPci+0x30>
+ 604:	00000793          	li	a5,0
+ 608:	0a00006f          	j	6a8 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ 60c:	fd842783          	lw	a5,-40(s0)
+ 610:	00078023          	sb	zero,0(a5)
+ 614:	000507b7          	lui	a5,0x50
+ 618:	00878793          	addi	a5,a5,8 # 50008 <Keyboard+0x4f720>
+ 61c:	0007a783          	lw	a5,0(a5)
+ 620:	fef42623          	sw	a5,-20(s0)
+ 624:	000017b7          	lui	a5,0x1
+ 628:	8e47a783          	lw	a5,-1820(a5) # 8e4 <_ZL19keyboard_stream_seq>
+ 62c:	fec42703          	lw	a4,-20(s0)
+ 630:	00f71663          	bne	a4,a5,63c <_ZN14KeyboardDevice10KeysStreamEPci+0x60>
+ 634:	00000793          	li	a5,0
+ 638:	0700006f          	j	6a8 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ 63c:	000017b7          	lui	a5,0x1
+ 640:	fec42703          	lw	a4,-20(s0)
+ 644:	8ee7a223          	sw	a4,-1820(a5) # 8e4 <_ZL19keyboard_stream_seq>
+ 648:	000507b7          	lui	a5,0x50
+ 64c:	00478793          	addi	a5,a5,4 # 50004 <Keyboard+0x4f71c>
+ 650:	0007a783          	lw	a5,0(a5)
+ 654:	fef42423          	sw	a5,-24(s0)
+ 658:	000507b7          	lui	a5,0x50
+ 65c:	00c78793          	addi	a5,a5,12 # 5000c <Keyboard+0x4f724>
+ 660:	fec42703          	lw	a4,-20(s0)
+ 664:	00e7a023          	sw	a4,0(a5)
+ 668:	fe842783          	lw	a5,-24(s0)
+ 66c:	0ff7f793          	zext.b	a5,a5
+ 670:	00079663          	bnez	a5,67c <_ZN14KeyboardDevice10KeysStreamEPci+0xa0>
+ 674:	00000793          	li	a5,0
+ 678:	0300006f          	j	6a8 <_ZN14KeyboardDevice10KeysStreamEPci+0xcc>
+ 67c:	fe842783          	lw	a5,-24(s0)
+ 680:	0ff7f713          	zext.b	a4,a5
+ 684:	fd842783          	lw	a5,-40(s0)
+ 688:	00e78023          	sb	a4,0(a5)
+ 68c:	fd442703          	lw	a4,-44(s0)
+ 690:	00100793          	li	a5,1
+ 694:	00e7d863          	bge	a5,a4,6a4 <_ZN14KeyboardDevice10KeysStreamEPci+0xc8>
+ 698:	fd842783          	lw	a5,-40(s0)
+ 69c:	00178793          	addi	a5,a5,1
+ 6a0:	00078023          	sb	zero,0(a5)
+ 6a4:	00100793          	li	a5,1
+ 6a8:	00078513          	mv	a0,a5
+ 6ac:	02c12403          	lw	s0,44(sp)
+ 6b0:	03010113          	addi	sp,sp,48
+ 6b4:	00008067          	ret
 
 lds/calc-rv32_ld.elf:     file format elf32-littleriscv
 
 Contents of section .text:
  0000 130101fe 232e1100 232c8100 13040102  ....#...#,......
- 0010 1305003d ef00000c 9307c4fe 13850700  ...=............
- 0020 ef000029 93070500 93d7f701 93f7f70f  ...)............
- 0030 63980704 1305803e ef00c009 930784fe  c......>........
- 0040 13850700 ef00c026 93070500 93d7f701  .......&........
- 0050 93f7f70f 639a0702 13050040 ef008007  ....c......@....
+ 0010 1305806b ef00000c 9307c4fe 13850700  ...k............
+ 0020 ef004033 93070500 93d7f701 93f7f70f  ..@3............
+ 0030 63980704 1305006d ef00c009 930784fe  c......m........
+ 0040 13850700 ef000031 93070500 93d7f701  .......1........
+ 0050 93f7f70f 639a0702 1305806e ef008007  ....c......n....
  0060 0327c4fe 832784fe b307f700 13850700  .'...'..........
  0070 ef00800b 1305a000 ef008002 6ff05ff9  ............o._.
- 0080 13000000 6f008000 13000000 13054040  ....o.........@@
+ 0080 13000000 6f008000 13000000 1305c06e  ....o..........n
  0090 ef004004 13050000 9308d005 73000000  ..@.........s...
  00a0 130101fe 232e8100 13040102 93070500  ....#...........
  00b0 a307f4fe 8347f4fe 13850700 9308b000  .....G..........
@@ -303,29 +501,77 @@ Contents of section .text:
  0250 13850700 eff0dfe4 93071000 2326f4fe  ............#&..
  0260 832784fe 93871700 2324f4fe 032784fe  .'......#$...'..
  0270 93079000 e3d6e7f6 8320c105 03248105  ......... ...$..
- 0280 13010106 67800000 130101ff 23268100  ....g.......#&..
- 0290 13040101 9308c000 73000000 93070500  ........s.......
- 02a0 13850700 0324c100 13010101 67800000  .....$......g...
- 02b0 130101fd 23261102 23248102 13040103  ....#&..#$......
- 02c0 232ea4fc eff05ffc 2326a4fe 0327c4fe  #....._.#&...'..
- 02d0 93071007 630ef700 0327c4fe 93071005  ....c....'......
- 02e0 6316f702 6f00c000 eff01ffa 2326a4fe  c...o.......#&..
- 02f0 0327c4fe 9307a000 6306f700 8327c4fe  .'......c....'..
- 0300 e344f0fe 9307f0ff 6f00400b 232404fe  .D......o.@.#$..
- 0310 0327c4fe 9307d002 631af700 93071000  .'......c.......
- 0320 2324f4fe eff05ff6 2326a4fe 232204fe  #$...._.#&..#"..
- 0330 6f000003 832744fe 13973700 832744fe  o....'D...7..'D.
- 0340 93971700 3307f700 8327c4fe 938707fd  ....3....'......
- 0350 b307f700 2322f4fe eff01ff3 2326a4fe  ....#"......#&..
- 0360 0327c4fe 9307f002 63dee700 0327c4fe  .'......c....'..
- 0370 93079003 e3d0e7fc 6f00c000 eff0dff0  ........o.......
- 0380 2326a4fe 0327c4fe 9307a000 6306f700  #&...'......c...
- 0390 8327c4fe e344f0fe 832784fe 63880700  .'...D...'..c...
- 03a0 832744fe b307f040 6f008000 832744fe  .'D....@o....'D.
- 03b0 0327c4fd 2320f700 93070000 13850700  .'..# ..........
- 03c0 8320c102 03248102 13010103 67800000  . ...$......g...
+ 0280 13010106 67800000 130101fe 232e1100  ....g.......#...
+ 0290 232c8100 13040102 b7170000 1385878e  #,..............
+ 02a0 ef000021 930784fe 13062000 93850700  ...!...... .....
+ 02b0 b7170000 1385878e ef004032 93070500  ..........@2....
+ 02c0 b327f000 93f7f70f e38807fc 834784fe  .'...........G..
+ 02d0 2326f4fe 0327c4fe 9307d000 6316f700  #&...'......c...
+ 02e0 9307a000 2326f4fe 8327c4fe 93f7f70f  ....#&...'......
+ 02f0 13850700 eff0dfda 8327c4fe 13850700  .........'......
+ 0300 8320c101 03248101 13010102 67800000  . ...$......g...
+ 0310 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 0320 0327c4fe 9307a000 6308f700 0327c4fe  .'......c....'..
+ 0330 9307d000 6316f700 93071000 6f008000  ....c.......o...
+ 0340 93070000 13850700 0324c101 13010102  .........$......
+ 0350 67800000 130101fd 23261102 23248102  g.......#&..#$..
+ 0360 13040103 232ea4fc eff01ff2 93070500  ....#...........
+ 0370 2326f4fe 0327c4fe 93071007 6300f702  #&...'......c...
+ 0380 0327c4fe 93071005 6312f704 6f000001  .'......c...o...
+ 0390 eff09fef 93070500 2326f4fe 0325c4fe  ........#&...%..
+ 03a0 eff01ff7 93070500 639a0700 8327c4fe  ........c....'..
+ 03b0 6356f000 93071000 6f008000 93070000  cV......o.......
+ 03c0 e39807fc 9307f0ff 6f00400d 232404fe  ........o.@.#$..
+ 03d0 0327c4fe 9307d002 631cf700 93071000  .'......c.......
+ 03e0 2324f4fe eff05fea 93070500 2326f4fe  #$...._.....#&..
+ 03f0 232204fe 6f004003 832744fe 13973700  #"..o.@..'D...7.
+ 0400 832744fe 93971700 3307f700 8327c4fe  .'D.....3....'..
+ 0410 938707fd b307f700 2322f4fe eff0dfe6  ........#"......
+ 0420 93070500 2326f4fe 0327c4fe 9307f002  ....#&...'......
+ 0430 63d0e702 0327c4fe 93079003 e3dee7fa  c....'..........
+ 0440 6f000001 eff05fe4 93070500 2326f4fe  o....._.....#&..
+ 0450 0325c4fe eff0dfeb 93070500 639a0700  .%..........c...
+ 0460 8327c4fe 6356f000 93071000 6f008000  .'..cV......o...
+ 0470 93070000 e39807fc 832784fe 63880700  .........'..c...
+ 0480 832744fe b307f040 6f008000 832744fe  .'D....@o....'D.
+ 0490 0327c4fd 2320f700 93070000 13850700  .'..# ..........
+ 04a0 8320c102 03248102 13010103 67800000  . ...$......g...
+ 04b0 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 04c0 b7170000 03a7c78d b7170000 23a0e78e  ............#...
+ 04d0 b7070500 03a70700 b7170000 23aee78c  ............#...
+ 04e0 13000000 0324c101 13010102 67800000  .....$......g...
+ 04f0 130101fe 232e8100 13040102 2326a4fe  ....#.......#&..
+ 0500 2324b4fe b7170000 03a7c78d 832784fe  #$...........'..
+ 0510 b377f700 b337f000 93f7f70f 13850700  .w...7..........
+ 0520 0324c101 13010102 67800000 130101fe  .$......g.......
+ 0530 232e8100 13040102 2326a4fe 2324b4fe  #.......#&..#$..
+ 0540 b7170000 03a7c78d 832784fe b377f700  .........'...w..
+ 0550 63800702 b7170000 03a7078e 832784fe  c............'..
+ 0560 b377f700 63960700 93071000 6f008000  .w..c.......o...
+ 0570 93070000 13850700 0324c101 13010102  .........$......
+ 0580 67800000 130101fe 232e8100 13040102  g.......#.......
+ 0590 2326a4fe 2324b4fe b7170000 03a7c78d  #&..#$..........
+ 05a0 832784fe b377f700 63900702 b7170000  .'...w..c.......
+ 05b0 03a7078e 832784fe b377f700 63860700  .....'...w..c...
+ 05c0 93071000 6f008000 93070000 13850700  ....o...........
+ 05d0 0324c101 13010102 67800000 130101fd  .$......g.......
+ 05e0 23268102 13040103 232ea4fc 232cb4fc  #&......#...#,..
+ 05f0 232ac4fc 832784fd 63860700 832744fd  #*...'..c....'D.
+ 0600 6346f000 93070000 6f00000a 832784fd  cF......o....'..
+ 0610 23800700 b7070500 93878700 83a70700  #...............
+ 0620 2326f4fe b7170000 83a7478e 0327c4fe  #&........G..'..
+ 0630 6316f700 93070000 6f000007 b7170000  c.......o.......
+ 0640 0327c4fe 23a2e78e b7070500 93874700  .'..#.........G.
+ 0650 83a70700 2324f4fe b7070500 9387c700  ....#$..........
+ 0660 0327c4fe 23a0e700 832784fe 93f7f70f  .'..#....'......
+ 0670 63960700 93070000 6f000003 832784fe  c.......o....'..
+ 0680 13f7f70f 832784fd 2380e700 032744fd  .....'..#....'D.
+ 0690 93071000 63d8e700 832784fd 93871700  ....c....'......
+ 06a0 23800700 93071000 13850700 0324c102  #............$..
+ 06b0 13010103 67800000                    ....g...        
 Contents of section .rodata:
- 03d0 66697273 74202028 6f722071 20746f20  first  (or q to 
- 03e0 71756974 293a2000 7365636f 6e642028  quit): .second (
- 03f0 6f722071 20746f20 71756974 293a2000  or q to quit): .
- 0400 3d200000 6279650a 00000000           = ..bye.....    
+ 06b8 66697273 74202028 6f722071 20746f20  first  (or q to 
+ 06c8 71756974 293a2000 7365636f 6e642028  quit): .second (
+ 06d8 6f722071 20746f20 71756974 293a2000  or q to quit): .
+ 06e8 3d200000 6279650a 00000000 00000500  = ..bye.........
+ 06f8 04000500 08000500 0c000500           ............    

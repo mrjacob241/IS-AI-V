@@ -18,6 +18,9 @@ EXTRA_SOURCES=()
 if grep -q 'Screen_SDK.h' "$CPP_FILE"; then
     EXTRA_SOURCES+=("../Screen_SDK.cpp")
 fi
+if grep -q 'IO_SDK.h' "$CPP_FILE"; then
+    EXTRA_SOURCES+=("../IO_SDK.cpp")
+fi
 
 riscv64-unknown-elf-g++ \
     -march=rv32im \

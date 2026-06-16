@@ -45,13 +45,15 @@ virtual video output signals and turns them into an image file.
 
 ## Memory Map
 
-The CPU routes normal load/store instructions either to RAM or to the GPU.
+The CPU routes normal load/store instructions to RAM, GPU, or IO based on the
+computed byte address.
 
 | Address range | Target | Description |
 |---------------|--------|-------------|
 | `0x00000000` - `0x0001FFFF` | `ram.v` | CPU program/data RAM |
 | `0x00020000` - `0x00032BFF` | `gpu.v` | 160x120 framebuffer |
 | `0x00040000` - `0x000400FF` | `gpu.v` | GPU registers |
+| `0x00050000` - `0x000500FF` | `io.v` | Keyboard/input registers |
 
 The framebuffer uses one 32-bit word per source pixel:
 
@@ -109,18 +111,31 @@ The software debug counter is useful for diagnosing whether the game simulation
 and the graphics capture are advancing at similar rates. `pong_live` increments
 it only when game physics advances.
 
+Keyboard and typed-character input are handled by `io.v`, not by the GPU:
+
+| Address | Meaning |
+|---------|---------|
+| `0x00050000` | Key-state bitmask |
+| `0x00050004` | Current typed character |
+| `0x00050008` | Typed-character sequence |
+| `0x0005000C` | Typed-character acknowledge |
+
+Bare-metal programs use `IO_SDK.h` / `IO_SDK.cpp` for the `Keyboard` object.
+
 ---
 
 ## CPU Integration
 
-`cpu.v` decides whether a memory access goes to RAM or GPU based on the ALU
-address for the current load/store.
+`cpu.v` decides whether a memory access goes to RAM, GPU, or IO based on the
+ALU address for the current load/store.
 
 For stores:
 
 ```text
 if address is in GPU range:
     gpu.v receives mmio_we, mmio_addr, mmio_wd, mmio_size
+else if address is in IO range:
+    io.v receives mmio_we, mmio_addr, mmio_wd, mmio_size
 else:
     ram.v receives the write
 ```
@@ -130,6 +145,8 @@ For loads:
 ```text
 if address is in GPU range:
     writeback data comes from gpu_rd
+else if address is in IO range:
+    writeback data comes from io_rd
 else:
     writeback data comes from ram_rd
 ```
@@ -397,7 +414,7 @@ It does not talk to Verilator directly. It only watches the PPM file.
 
 ## Pong Programs
 
-There are two Pong variants.
+There are three Pong variants.
 
 ### pong.cpp
 
@@ -433,6 +450,32 @@ python3 parse_rom.py codes/instr/pong_live_instr.txt
 ```
 
 Stop the simulator with Ctrl+C.
+
+---
+
+### pong_test.cpp
+
+`pong_test.cpp` is the player-controlled live version. The left paddle is
+controlled through `IO_SDK` keyboard input (`W`/`S`), while the right paddle
+tracks the ball automatically. If the ball crosses the player's left boundary
+without paddle contact, the framebuffer is cleared red, the game pauses briefly,
+then the ball and paddles reset to their starting positions.
+
+Run with live viewing:
+
+```bash
+python3 ppm_live_viewer.py screen.ppm
+```
+
+In another terminal:
+
+```bash
+./codes/build_riscv.sh pong_test
+python3 parse_rom.py codes/instr/pong_test_instr.txt
+./run.sh cpu tb_pong_test.cpp
+```
+
+Controls: `W` = up, `S` = down, `Q` = quit the host simulator.
 
 ---
 

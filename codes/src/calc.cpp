@@ -3,10 +3,13 @@
 // Prompts for two integers, prints their sum, repeats.
 // Type 'q' at either prompt to quit.
 //
-// Syscalls:
+// Output/exit syscalls:
 //   a7=11  putch(a0)          print one character
-//   a7=12  a0 = getch()       read one character
 //   a7=93  exit(a0)
+//
+// Input comes from IO_SDK Keyboard.KeysStream().
+
+#include "../../IO_SDK.h"
 
 // Forward declarations (_start must be first in .text)
 static void    putch(char c);
@@ -77,10 +80,21 @@ static void print_int(int n) {
 }
 
 static int getch(void) {
-    register int ret asm("a0");
-    register int _a7 asm("a7") = 12;
-    asm volatile("ecall" : "=r"(ret) : "r"(_a7) : "memory");
-    return ret;
+    char buf[2];
+    while (1) {
+        Keyboard.Update();
+        if (Keyboard.KeysStream(buf, sizeof(buf)) > 0) {
+            int c = (int)(unsigned char)buf[0];
+            if (c == '\r')
+                c = '\n';
+            putch((char)c);
+            return c;
+        }
+    }
+}
+
+static int is_line_end(int c) {
+    return c == '\n' || c == '\r';
 }
 
 // Read a decimal integer from stdin.
@@ -90,7 +104,7 @@ static int read_num(int *out) {
     int c = getch();
 
     if (c == 'q' || c == 'Q') {
-        while (c != '\n' && c > 0) c = getch();
+        while (!is_line_end(c) && c > 0) c = getch();
         return -1;
     }
 
@@ -102,7 +116,7 @@ static int read_num(int *out) {
         num = (num << 3) + (num << 1) + (c - '0');
         c = getch();
     }
-    while (c != '\n' && c > 0) c = getch();
+    while (!is_line_end(c) && c > 0) c = getch();
 
     *out = neg ? -num : num;
     return 0;

@@ -37,6 +37,8 @@ localparam GPU_FB_BASE  = 32'h0002_0000;
 localparam GPU_FB_END   = 32'h0003_2C00;
 localparam GPU_REG_BASE = 32'h0004_0000;
 localparam GPU_REG_END  = 32'h0004_0100;
+localparam IO_REG_BASE  = 32'h0005_0000;
+localparam IO_REG_END   = 32'h0005_0100;
 
 reg [31:0] pc;
 
@@ -72,12 +74,17 @@ wire [31:0] alu_y;
 wire        alu_zero;
 wire [31:0] ram_rd;
 wire [31:0] gpu_rd;
+wire [31:0] io_rd;
 wire        gpu_addr_hit =
     ((alu_y >= GPU_FB_BASE)  && (alu_y < GPU_FB_END)) ||
     ((alu_y >= GPU_REG_BASE) && (alu_y < GPU_REG_END));
+wire        io_addr_hit = (alu_y >= IO_REG_BASE) && (alu_y < IO_REG_END);
 wire        normal_gpu_we = !rst & mem_write & gpu_addr_hit;
-wire        normal_ram_we = !rst & mem_write & !gpu_addr_hit;
-wire [31:0] mem_rd = gpu_addr_hit ? gpu_rd : ram_rd;
+wire        normal_io_we  = !rst & mem_write & io_addr_hit;
+wire        normal_ram_we = !rst & mem_write & !gpu_addr_hit & !io_addr_hit;
+wire [31:0] mem_rd = gpu_addr_hit ? gpu_rd :
+                     io_addr_hit  ? io_rd  :
+                                    ram_rd;
 
 wire [31:0] pc_plus_4 = pc + 32'd4;
 wire [31:0] wb_data =
@@ -117,7 +124,7 @@ wire        ram_we   = dbg_ram_we  ? 1'b1          :
                                      normal_ram_we;
 wire [31:0] ram_addr = dbg_ram_we  ? dbg_ram_addr  :
                        rom_loading ? rom_addr        :
-                       gpu_addr_hit ? 32'b0          :
+                       (gpu_addr_hit | io_addr_hit) ? 32'b0 :
                                       alu_y;
 wire [31:0] ram_wd   = dbg_ram_we  ? dbg_ram_wd    :
                        rom_loading ? rom_data       :
@@ -208,6 +215,16 @@ gpu gpu0 (
     .video_y(video_y),
     .video_frame_done(video_frame_done),
     .dbg_user_counter(video_game_frame)
+);
+
+io io0 (
+    .clk(clk),
+    .rst(rst),
+    .mmio_we(normal_io_we),
+    .mmio_addr(alu_y),
+    .mmio_wd(rs2_data),
+    .mmio_size(mem_size),
+    .mmio_rd(io_rd)
 );
 
 always @(posedge clk) begin

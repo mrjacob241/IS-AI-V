@@ -17,7 +17,8 @@ You need:
 ## Calculator Sample
 
 The calculator is an interactive two-number adder implemented in
-`codes/src/calc.cpp`. It uses `ecall` I/O through `tb_io.cpp`.
+`codes/src/calc.cpp`. It reads keyboard input through `IO_SDK` / `io.v` and
+prints through `ecall` output handled by `tb_io.cpp`.
 
 Build the RISC-V program:
 
@@ -87,3 +88,22 @@ Optional finite live capture for debugging:
 LIVE_FRAMES=10 LIVE_FPS=30 ./run.sh cpu tb_live_screen.cpp
 ```
 
+### Playable Pong
+
+Start the live PPM viewer in one terminal:
+
+```bash
+python3 ppm_live_viewer.py screen.ppm
+```
+
+In another terminal, build and run the player-controlled Pong program:
+
+```bash
+./codes/build_riscv.sh pong_test
+python3 parse_rom.py codes/instr/pong_test_instr.txt
+./run.sh cpu tb_pong_test.cpp
+```
+
+Controls: `W` = up, `S` = down, `Q` = quit the host simulator.
+If the ball passes the player's left boundary, the screen flashes red and the
+game resets to the initial ball and paddle positions.

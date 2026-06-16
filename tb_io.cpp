@@ -1,5 +1,6 @@
 #include "Vcpu.h"
 #include "Vcpu___024root.h"
+#include "pong_input_io.h"
 #include "verilated.h"
 #include <cstdio>
 #include <cstdint>
@@ -16,7 +17,7 @@ static uint32_t get_reg(Vcpu& top, int i) {
 // Syscall table (a7 value → action):
 //   1   print signed int  (a0 = value)
 //   11  print char        (a0 = ASCII code)
-//   12  read char         (return in a0)
+//   12  read char         (return in a0), legacy path
 //   93  exit
 
 int main() {
@@ -37,7 +38,13 @@ int main() {
     top.rst = 0;
     top.eval();
 
+    PongInputIO input(false);
+    if (!input.enabled())
+        printf("stdin is not a terminal; IO_SDK keyboard input is disabled.\n");
+
     for (int cycle = 0; cycle < 100000000; cycle++) {
+        input.apply_to_cpu(top);
+
         if ((uint32_t)top.dbg_instr != 0x00000073u) {
             tick(top);
             continue;

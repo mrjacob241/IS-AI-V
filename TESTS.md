@@ -515,7 +515,8 @@ codes/
 │   ├── t_lui.cpp               # LUI+ADDI → 0x000A0050=655440
 │   ├── t_bytes.cpp             # SB/SH/LBU/LHU → 242
 │   ├── t_rodata.cpp            # .rodata load: sum("Hello")=500
-│   └── calc.cpp                # interactive two-number adder (uses tb_io.cpp)
+│   ├── pong_test.cpp           # player-controlled Pong; red miss screen + reset
+│   └── calc.cpp                # interactive two-number adder (IO_SDK input + tb_io.cpp output)
 ├── instr/                      # objdump -d + objdump -s output (input to parse_rom.py)
 ├── builds/                     # ELF files (no linker script, qemu verification)
 ├── lds/                        # ELF files linked at 0x00000000 (for our CPU)
